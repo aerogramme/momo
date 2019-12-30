@@ -1,28 +1,33 @@
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from flask_pymongo import PyMongo
+#from flask_pymongo import PyMongo
 from functools import wraps
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
-from passlib.hash import sha256_crypt
-#from pymongo import MongoClient
+from pymongo import MongoClient
 import bcrypt
 from datetime import datetime
 import json
 import uuid
 import dns # required for connecting with SRV
 from bson.objectid import ObjectId
-from flask_paginate import Pagination, get_page_args
+
+
+#############################################
+# Author: Theophilus Siameh
+#############################################
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "MobileMoney"
 #app.config["MONGO_URI"] = "mongodb://localhost:27017/MobileMoneyDB"
-app.config["MONGO_URI"] = "mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority"
+#app.config["MONGO_URI"] = "mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority"
 
-mongo = PyMongo(app)
-#client = MongoClient("mongodb://db:27017")
-#db = client.MobileMoneyDB
+#mongo = PyMongo(app)
+api = Api(app)
+
+client = MongoClient("mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority")
+mongo = client.MobileMoneyDB
 #users = db["Users"]
 users = list(range(100))
 
