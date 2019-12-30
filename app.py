@@ -1,5 +1,5 @@
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-#from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo
 from functools import wraps
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from flask import Flask, jsonify, request
@@ -21,17 +21,17 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "MobileMoney"
 #app.config["MONGO_URI"] = "mongodb://localhost:27017/MobileMoneyDB"
-#app.config["MONGO_URI"] = "mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority"
 
-#mongo = PyMongo(app)
+mongo = PyMongo(app)
 api = Api(app)
 
-client = MongoClient("mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority")
-mongo = client.MobileMoneyDB
+#client = MongoClient("mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority")
+#mongo = client.MobileMoneyDB
 #users = db["Users"]
 users = list(range(100))
 
-api = Api(app)
+#api = Api(app)
 
 #Check if user logged in
 def is_logged_in(f):
