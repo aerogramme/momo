@@ -5,6 +5,7 @@ from flask import Flask, render_template, flash, redirect, url_for, session, req
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
 from pymongo import MongoClient
+from passlib.hash import sha256_crypt
 import bcrypt
 from datetime import datetime
 import json
