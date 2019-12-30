@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <!-- <h1>Dashboard <small> Welcome </small></h1> -->
+  <h1>Welcome <small> <a href="#"> {{session.username}} </a></small></h1>
+  <a class="btn btn-success" href="/signup"> New Account</a>
+  <a class="btn btn-success" href="/dashboard"> << Back</a>
+
+  <nav class="navbar navbar-light bg-light">
+      <div class="search" align="right">
+        <form class="form-inline my-2 my-lg-0" action="/search" method="post">
+          <input class="form-control mr-sm-2" name = "search" type="search" size = "30" placeholder="SearchBy: username|email|phone" aria-label="Search" value="">
+          <button class="btn btn-info" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  <hr>
+
+  <table class="table table-striped">
+    <tr>
+      <th>#</th>
+      <th>_id</th>
+      <th>Balance</th>
+      <th>Debt</th>
+      <!-- <th>Network</th> -->
+      <th>Username</th>
+    </tr>
+    <tbody>
+      {% for user in balanceObject %}
+      <tr>
+         <td>{{ loop.index + pagination.skip }}</td>
+         <td>{{ user._id }}</td>
+         <td>{{ user.Balance }}</td>
+         <td>{{ user.Debt }}</td>
+         <!-- <td>{{ user.Network }}</td> -->
+         <td>{{ user.Username }}</td>
+         <td><a href="edit_balance/{{user._id}}" class="btn btn-default pull-right">Edit</a></td>
+         <td>
+           <form action="{{url_for('delete_account',id = user._id)}}" method="post">
+             <input type="hidden" name="_method" value="DELETE">
+             <input type="submit" value="Delete" class="btn btn-danger">
+           </form>
+         </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align:center;">
+        <h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are going to Delete this forever !!</h4>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="Delete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function Delete(){
+	$.ajax({
+		url : '/delete_account',
+		data : {id:localStorage.getItem('deleteId')},
+		type : 'POST',
+		success: function(res){
+			var result = JSON.parse(res);
+			if(result.status == 'OK'){
+				$('#deleteModal').modal('hide');
+				//GetBlogs();
+			}
+			else{
+				alert(result.status);
+			}
+		},
+		error: function(error){
+			console.log(error);
+		}
+	});
+}
+</script> -->
+
+  <center> {{pagination.info}} </center>
+  <center> {{pagination.links}} </center>
+
+{% endblock %}

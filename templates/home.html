@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="jumbotron text-center">
+    <h1>MyMoMo Open Source Project</h1>
+    <p class="lead">Built on the Python Flask framework, Docker and PyMongo. Contributions are welcome.</p>
+
+    Contributors
+    <ul style="list-style-type:square;">
+      <li>Theophilus Siameh</li>
+    </ul>
+    {% if session.logged_in == NULL %}
+      <a href="/signup" class="btn btn-primary btn-lg">Sign up</a>
+      <a href="/login" class="btn btn-success btn-lg">Login</a>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Articles</h1>
+  <ul class="list-group">
+    {% for balance in balanceObject %}
+      <li class="list-group-item"><a href="edit_balance/{{balance._id}}">{{balance.Balance}}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

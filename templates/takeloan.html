@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Welcome <small>  <a href="#"> {{session.username}} </a></small></h1>
+  <a class="btn btn-success" href="/signup"> New Account</a>
+  <a class="btn btn-success" href="/dashboard"> << Back</a>
+
+  <nav class="navbar navbar-light bg-light">
+      <div class="search" align="right">
+        <form class="form-inline my-2 my-lg-0" action="/search" method="post">
+          <input class="form-control mr-sm-2" name = "search" type="search" size = "30" placeholder="SearchBy: username|email|phone" aria-label="Search" value="">
+          <button class="btn btn-info" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  <hr>
+
+  <table class="table table-striped">
+    <tr>
+      <th>_id</th>
+      <th>TransactionID</th>
+      <th>LoanAmount</th>
+      <th>Username</th>
+      <th>Phone</th>
+      <th>DateTime</th>
+      <th>Network</th>
+    </tr>
+    <tbody>
+      {% for user in loanObject %}
+      <tr>
+
+         <td>{{ user._id }}</td>
+         <td>{{ user.TransactionID }}</td>
+         <td>{{ user.Loan_Amount }}</td>
+         <td>{{ user.Username }}</td>
+         <td>{{ user.Phone }}</td>
+         <td>{{ user.DateTime }}</td>
+         <td>{{ user.Network }}</td>
+         <td><a href="#" class="btn btn-default pull-right">Edit</a></td>
+         <td>
+           <form action="#" method="post">
+             <input type="hidden" name="_method" value="DELETE">
+             <input type="submit" value="Delete" class="btn btn-danger">
+           </form>
+         </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

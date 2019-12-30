@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    build: ./web
+    ports:
+      - "5000:5000"
+    links:
+      - db
+  db:
+    build: ./db
+    container_name: 'mongo-container-flask'
+    restart: always
+    ports: 
+      - '27017:27017'

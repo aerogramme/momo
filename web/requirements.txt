@@ -1,0 +1,6 @@
+Flask
+flask_restful
+bcrypt
+flask_pymongo
+wtforms
+bson
