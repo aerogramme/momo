@@ -12,6 +12,7 @@ import json
 import uuid
 import dns # required for connecting with SRV
 from bson.objectid import ObjectId
+from flask_paginate import Pagination, get_page_parameter,get_page_args
 
 
 #############################################
@@ -264,7 +265,7 @@ def login():
 
         # Get user by username
         # Get stored hash
-        hashed_pw = mongo.db.Register.find_one({"Username":username})["Password"]
+        hashed_pw = mongo.db.Register.find_one({"Username":username})[0]["Password"]
 
         # Compare Passwords
         if sha256_crypt.verify(password_candidate, hashed_pw):
