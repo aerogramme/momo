@@ -1,16 +1,16 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <h1>Edit Balance</h1>
+  <center><h1>Edit Balance</h1></center>
   {% from "includes/_formhelpers.html" import render_field %}
   <form method="POST" action="">
-    <div class="form-group">
+    <div class="form-group col-xs-3 col-lg-4 col-lg-offset-4">
       {{ render_field(form.balance, class_="form-control") }}
-    </div>
-    <div class="form-group">
       {{ render_field(form.debt, class_="form-control") }}
-        <!-- {{ render_field(form.debt, class_="form-control", id="editor") }} -->
+    </br>
+      <p><input class="btn btn-success btn-lg btn-primary btn-block" type="submit" size="25" value="Submit">
     </div>
-    <p><input class="btn btn-primary" type="submit" value="Submit">
+
+
   </form>
 {% endblock %}

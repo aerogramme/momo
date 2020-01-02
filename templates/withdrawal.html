@@ -3,7 +3,8 @@
 {% block body %}
   <h1>Welcome <small>  <a href="#"> {{session.username}} </a></small></h1>
   <a class="btn btn-success" href="/signup"> New Account</a>
-  <a class="btn btn-success" href="/dashboard"> << Back</a>
+  <!-- <a class="btn btn-success" href="/dashboard"> << Back</a> -->
+  <a class="btn btn-success" href="/change_password"> Change Password</a>
 
   <nav class="navbar navbar-light bg-light">
       <div class="search" align="right">
@@ -28,7 +29,7 @@
     <tbody>
       {% for user in withdrawalObject %}
       <tr>
-
+         <td>{{ loop.index + pagination.skip }}</td>
          <td>{{ user._id }}</td>
          <td>{{ user.Transaction_Id }}</td>
          <td>{{ user.Amount }}</td>
@@ -47,5 +48,7 @@
       {% endfor %}
     </tbody>
   </table>
+  <center> {{pagination.info}} </center>
+  <center> {{pagination.links}} </center>
 
 {% endblock %}

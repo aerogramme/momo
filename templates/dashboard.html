@@ -27,7 +27,7 @@
     <tbody>
       {% for col in momo_account %}
       <tr>
-
+         <td>{{ loop.index + pagination.skip }}</td>
          <td>{{ col._id }}</td>
          <td>{{ col.Username }}</td>
          <td>{{ col.Phone }}</td>
@@ -44,5 +44,7 @@
       {% endfor %}
     </tbody>
   </table>
+  <center> {{pagination.info}} </center>
+  <center> {{pagination.links}} </center>
 
 {% endblock %}

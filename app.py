@@ -72,6 +72,9 @@ def index():
     #list_users = register.insert_one({"Username":"Anthony"})
     return render_template('home.html')
 
+#######################
+# Search
+#######################
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     if request.method == "POST":
@@ -88,6 +91,59 @@ def search():
         return render_template('search.html', searchResult = searchResult)
 
     return render_template('search.html')
+
+
+@app.route('/searchtop', methods=['GET', 'POST'])
+def searchtop():
+    if request.method == "POST":
+        q = request.form['search']
+        findByUsername = mongo.db.TopUps
+
+        # search db
+        searchTop = findByUsername.find({"$or":[
+                                                    {"Username":{'$regex': q}},
+                                                    {"Email":{'$regex': q}},
+                                                    {"Phone":{'$regex': q}}
+                                                ]})
+
+        return render_template('searchtop.html', searchTop = searchTop)
+
+    return render_template('searchtop.html')
+
+
+@app.route('/searchloan', methods=['GET', 'POST'])
+def searchloan():
+    if request.method == "POST":
+        q = request.form['search']
+        findByUsername = mongo.db.Takeloan
+
+        # search db
+        searchLoan = findByUsername.find({"$or":[
+                                                    {"Username":{'$regex': q}},
+                                                    {"Email":{'$regex': q}},
+                                                    {"Phone":{'$regex': q}}
+                                                ]})
+
+        return render_template('searchloan.html', searchLoan = searchLoan)
+
+    return render_template('searchloan.html')
+
+@app.route('/searchPay', methods=['GET', 'POST'])
+def searchPay():
+    if request.method == "POST":
+        q = request.form['search']
+        findByUsername = mongo.db.Payloan
+
+        # search db
+        searchPay = findByUsername.find({"$or":[
+                                                    {"Username":{'$regex': q}},
+                                                    {"Email":{'$regex': q}},
+                                                    {"Phone":{'$regex': q}}
+                                                ]})
+
+        return render_template('searchpay.html', searchPay = searchPay)
+
+    return render_template('searchpay.html')
 
 @app.route('/listusers')
 def listusers():
@@ -113,7 +169,20 @@ def listusers():
 def withdraw():
     withdrawHistory = mongo.db.Withdrawal
     withdrawalObject = withdrawHistory.find({})
-    return render_template("withdrawal.html",withdrawalObject = withdrawalObject)
+
+    total = len(users)
+
+    page, per_page, offset = get_page_args(page_parameter = 'page', per_page_parameter = 'per_page')
+
+    withdrawalObject = withdrawalObject.skip((page - 1) * per_page).limit(per_page)
+
+    pagination = Pagination(page = page, per_page = per_page, total = total, css_framework = 'bootstrap4')
+
+    return render_template("withdrawal.html",
+                            withdrawalObject = withdrawalObject,
+                            page = page,
+                            per_page = per_page,
+                            pagination = pagination)
 
 @app.route('/balance')
 def balance():
@@ -156,7 +225,20 @@ def topups():
 def loan():
     loans = mongo.db.Takeloan
     loanObject = loans.find({})
-    return render_template("takeloan.html",loanObject = loanObject)
+
+    total = len(users)
+
+    page, per_page, offset = get_page_args(page_parameter = 'page', per_page_parameter = 'per_page')
+
+    loanObject = loanObject.skip((page - 1) * per_page).limit(per_page)
+
+    pagination = Pagination(page = page, per_page = per_page, total = total, css_framework = 'bootstrap4')
+
+    return render_template("takeloan.html",
+                            loanObject = loanObject,
+                            page = page,
+                            per_page = per_page,
+                            pagination = pagination)
 
 @app.route('/pay')
 def pay():
@@ -200,7 +282,20 @@ def transfer():
 def dashboard():
     all_account = mongo.db.Register
     momo_account = all_account.find({})
-    return render_template("dashboard.html",momo_account = momo_account)
+
+    total = len(users)
+
+    page, per_page, offset = get_page_args(page_parameter = 'page', per_page_parameter = 'per_page')
+
+    momo_account = momo_account.skip((page - 1) * per_page).limit(per_page)
+
+    pagination = Pagination(page = page, per_page = per_page, total = total, css_framework = 'bootstrap4')
+
+    return render_template("dashboard.html",
+                            momo_account = momo_account,
+                            page = page,
+                            per_page = per_page,
+                            pagination = pagination)
 
 # Register Form Class
 class RegisterForm(Form):
@@ -233,7 +328,7 @@ def signup():
 
         reg = mongo.db.Register
         existing_user = reg.find_one({"Username": username})
-        if existing_user is None:
+        if existing_user is not None:
             hashed_pw = sha256_crypt.hash((str(request.form['password'])))
             reg.insert_one({
                 "Name": name,
@@ -265,7 +360,7 @@ def login():
 
         # Get user by username
         # Get stored hash
-        hashed_pw = mongo.db.Register.find_one({"Username":username})[0]["Password"]
+        hashed_pw = mongo.db.Register.find_one({"Username":username})["Password"]
 
         # Compare Passwords
         if sha256_crypt.verify(password_candidate, hashed_pw):
@@ -287,6 +382,103 @@ def login():
 class BalanceForm(Form):
     balance = StringField('Balance')
     debt = StringField('Debt')
+
+
+#####################
+# change password
+#####################
+
+@app.route("/change_password/", methods=['GET', 'POST'])
+@is_logged_in
+def change_password():
+    if request.method=='GET': #Send the change password form
+        return render_template('change_password.html')
+
+    elif request.method=='POST':
+        #Get the post data
+        username = request.form['username'] # email = request.form.get('email')
+        current_password = request.form['current_password']
+        new_password = request.form['password']
+        confirm_new_password = request.form['confirm_password']
+
+        #Checks
+        errors = []
+        if username is None or username=='':
+            errors.append('Username is required')
+        if current_password is None or current_password=='':
+            errors.append('Current Password is required')
+        if new_password is None or new_password=='':
+            errors.append('New Password is required')
+        if confirm_new_password is None or confirm_new_password=='':
+            errors.append('Confirm New Password is required')
+        if new_password!=confirm_new_password:
+            errors.append('New Passwords do not match')
+        # current hashed password
+        usernameByPassword = mongo.db.Register.find_one({"Username":username})["Password"]
+
+        if usernameByPassword:
+            if not sha256_crypt.verify(current_password,usernameByPassword):
+                errors.append("Password is incorrect")
+            # Query for user from database and check password
+            elif len(errors) == 0:
+                #if verifyPw(username, current_password):
+                hashed_pw = sha256_crypt.hash(str(new_password))
+                    # update password
+                mongo.db.Register.update_one({
+                    "Username": username
+                    },{
+                        "$set":{
+                        "Password": hashed_pw
+                        }
+                    })
+                #return "Password Changed"
+                flash('Password Changed Successfully', 'success')
+                return redirect(url_for('login'))
+        else: #No usable password
+            errors.append("User has no Password")
+
+        #Error Message
+        if len(errors) > 0:
+            return render_template('change_password.html', errors=errors)
+
+
+@app.route("/forgot_password/", methods=['GET', 'POST'])
+def forgot_password():
+	if request.method=='GET': #Send the forgot password form
+		return render_template('forgot_password.html')
+
+	elif request.method=='POST':
+		#Get the post data
+		username = request.form.get('username')
+
+		#Checks
+		errors = []
+		if username is None or username=='':
+			errors.append('Username is required')
+		user = User.objects.get_or_404(username=username)
+
+		#Generate Random Pass and Set it to User object
+		import random
+		s = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		passlen = 16
+		generated_password =  "".join(random.sample(s,passlen ))
+		print(generated_password)
+		pw_hash = bcrypt.generate_password_hash(generated_password).decode('utf-8')
+		user.password = pw_hash
+		user.save()
+
+		#Send Reset Mail
+		import sendmail
+		message = sendmail.SendPasswordResetMail(user, generated_password)
+		print(message)
+		if message is not None:
+			return "Password Reset Link has been sent to your Email. "
+		else:
+			errors.append("Could Not Send Mail. Try Again Later.")
+
+		if len(errors) > 0:
+			return render_template('error.html', errors=errors)
+
 
 # Edit Balance
 @app.route('/edit_balance/<string:id>', methods=['GET', 'POST'])
@@ -476,7 +668,6 @@ class TopUp(Resource):
         updateAccount(username, round(float(cash + money),2))
 
         # Insert data into TopUp Collection
-
         mongo.db.TopUps.insert_one({
             "Username": username,
             "Amount": round(float(money),2),
@@ -688,4 +879,4 @@ api.add_resource(TakeLoan, '/loan')
 api.add_resource(PayLoan, '/pay')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=80, debug=True)
+    app.run(debug=True)
