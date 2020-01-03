@@ -10,9 +10,11 @@ import bcrypt
 from datetime import datetime
 import json
 import uuid
+#import sendmail
 import dns # required for connecting with SRV
 from bson.objectid import ObjectId
 from flask_paginate import Pagination, get_page_parameter,get_page_args
+#from flask_dance.contrib.google import make_google_blueprint, google
 
 
 #############################################
@@ -468,7 +470,7 @@ def forgot_password():
 		user.save()
 
 		#Send Reset Mail
-		import sendmail
+		#import sendmail
 		message = sendmail.SendPasswordResetMail(user, generated_password)
 		print(message)
 		if message is not None:
