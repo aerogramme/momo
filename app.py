@@ -316,6 +316,13 @@ class RegisterForm(Form):
     ])
     confirm = PasswordField('Confirm Password')
 
+
+class LogonForm(Form):
+    username = StringField('Username', [validators.DataRequired(), validators.Length(min=4, max=25)])
+    password = PasswordField('Password', [validators.DataRequired(), validators.Length(min=4, max=25)])
+
+
+
 def UserExist(username):
     userAccount = mongo.db.Register
     if userAccount.count_documents({"Username":username}) == 0:
@@ -367,14 +374,15 @@ def signup():
 # User login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    form = LogonForm(request.form)
     if request.method == 'POST':
         # Get Form Fields
-        username = request.form['username']
-        password_candidate = request.form['password']
+        username = form.username.data # request.form['username']
+        password_candidate = form.password.data # request.form['password']
 
-        # if username is None or password_candidate is None:
-        #     error = 'Username/Password not found'
-        #     return render_template('login.html', error = error)
+        if username is None or password_candidate is None:
+            error = 'Username/Password not found'
+            return render_template('login.html', error = error)
 
         # Get user by username
         # Get stored hash
@@ -400,7 +408,6 @@ def login():
 class BalanceForm(Form):
     balance = StringField('Balance')
     debt = StringField('Debt')
-
 
 #####################
 # change password
