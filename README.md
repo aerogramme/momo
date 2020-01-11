@@ -62,8 +62,5 @@ python app.py
  - http://35.236.211.103/balance
  - http://35.236.211.103/loan
 
- # https://github.com/aerogramme/momo/blob/master/withdraw.png
- # https://github.com/aerogramme/momo/blob/master/topup.png
-
- ![GitHub Logo](/images/https://github.com/aerogramme/momo/blob/master/withdraw.png)
- ![GitHub Logo](/images/https://github.com/aerogramme/momo/blob/master/topup.png)
+ ![alt text](https://github.com/aerogramme/momo/blob/master/withdraw.png)
+ ![alt text](https://github.com/aerogramme/momo/blob/master/topup.png)
