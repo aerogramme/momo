@@ -6,10 +6,14 @@ from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
 from pymongo import MongoClient
 from passlib.hash import sha256_crypt
+from itsdangerous import URLSafeTimedSerializer
 import bcrypt
 from datetime import datetime
 import json
 import uuid
+from flask_mail import Message
+from threading import Thread
+
 #import sendmail
 import dns # required for connecting with SRV
 from bson.objectid import ObjectId
@@ -443,44 +447,141 @@ def change_password():
         if len(errors) > 0:
             return render_template('change_password.html', errors=errors)
 
+######################
+# send email
+######################
+class EmailForm(Form):
+    email = StringField('Email', [validators.DataRequired(), validators.Length(min=6, max=50)])
+    #email = StringField('Email', validators=[validators.DataRequired(), Email(), Length(min=6, max=40)])
+
+class PasswordForm(Form):
+    password = PasswordField('Password', [validators.DataRequired()])
+
+
+def send_email(subject, recipients, html_body):
+    msg = Message(subject, recipients=recipients)
+    msg.html = html_body
+    thr = Thread(target=send_async_email, args=[msg])
+    thr.start()
+
+def send_password_reset_email(user_email):
+    password_reset_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+
+    password_reset_url = url_for(
+        'reset_with_token',
+        token = password_reset_serializer.dumps(user_email, salt='password-reset-salt'),
+        _external=True)
+
+    html = render_template(
+        'email_password_reset.html',
+        password_reset_url = password_reset_url)
+
+    send_email('Password Reset Requested', user_email, html)
+
+
+@app.route('/reset', methods=["GET", "POST"])
+def reset():
+    form = EmailForm()
+    if request.method == 'POST' and form.validate():
+        try:
+            #user = User.query.filter_by(email=form.email.data).first_or_404()
+            email = form.email.data
+            emailFound = mongo.db.Register.find_one({"Email":email})["Email"]
+        except:
+            flash('Invalid email address!', 'error')
+            return render_template('password_reset_email.html', form=form)
+
+        if emailFound:
+            send_password_reset_email(emailFound)
+            flash('Please check your email for a password reset link.', 'success')
+        else:
+            flash('Your email address must be confirmed before attempting a password reset.', 'error')
+        return redirect(url_for('login'))
+
+    return render_template('password_reset_email.html', form=form)
+
+
+@app.route('/reset/<token>', methods=["GET", "POST"])
+def reset_with_token(token):
+    try:
+        password_reset_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+        email = password_reset_serializer.loads(token, salt='password-reset-salt', max_age=3600)
+    except:
+        flash('The password reset link is invalid or has expired.', 'error')
+        return redirect(url_for('login'))
+
+    form = PasswordForm()
+
+    if form.validate():
+        try:
+            #user = User.query.filter_by(email=email).first_or_404()
+            emailFound = mongo.db.Register.find_one({"Email":email})["Email"]
+        except:
+            flash('Invalid email address!', 'error')
+            return redirect(url_for('login'))
+
+        # user.password = form.password.data
+        # db.session.add(user)
+        # db.session.commit()
+
+        password = form.password.data
+
+        mongo.db.Register.update_one({
+            "Username": username
+            },{
+                "$set":{
+                "Password": password
+                }
+            })
+
+        flash('Your password has been updated!', 'success')
+        return redirect(url_for('login'))
+
+    return render_template('reset_password_with_token.html', form=form, token=token)
+
 
 @app.route("/forgot_password/", methods=['GET', 'POST'])
 def forgot_password():
-	if request.method=='GET': #Send the forgot password form
-		return render_template('forgot_password.html')
+    if request.method=='GET': #Send the forgot password form
+        return render_template('forgot_password.html')
 
-	elif request.method=='POST':
-		#Get the post data
-		username = request.form.get('username')
+    elif request.method=='POST':
+        #Get the post data
+        emailFound = request.form.get('email')
+        username = request.form.get('username')
 
-		#Checks
-		errors = []
-		if username is None or username=='':
-			errors.append('Username is required')
-		user = User.objects.get_or_404(username=username)
+        if username is None or username=='':
+            flash('Username is required')
 
-		#Generate Random Pass and Set it to User object
-		import random
-		s = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-		passlen = 16
-		generated_password =  "".join(random.sample(s,passlen ))
-		print(generated_password)
-		pw_hash = bcrypt.generate_password_hash(generated_password).decode('utf-8')
-		user.password = pw_hash
-		user.save()
+        #Generate Random Pass and Set it to User object
+        import random
+        s = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        passlen = 16
+        generated_password =  "".join(random.sample(s,passlen))
+        print(generated_password)
+        #pw_hash = bcrypt.generate_password_hash(generated_password).decode('utf-8')
+        hashed_pw = sha256_crypt.hash(str(generated_password))
+        # update password
+        mongo.db.Register.update_one({
+            "Username": username
+            },{
+                "$set":{
+                "Password": hashed_pw
+                }
+            })
 
-		#Send Reset Mail
-		#import sendmail
-		message = sendmail.SendPasswordResetMail(user, generated_password)
-		print(message)
-		if message is not None:
-			return "Password Reset Link has been sent to your Email. "
-		else:
-			errors.append("Could Not Send Mail. Try Again Later.")
+        #Send Reset Mail
+        #message = sendmail.SendPasswordResetMail(user, generated_password)
+        send_password_reset_email(emailFound)
+        flash('"Password Reset Link has been sent to your Email. "', 'success')
+        #return redirect(url_for('dashboard'))
+        #if message is not None:
+        #    return "Password Reset Link has been sent to your Email. "
+        #else:
+        #    errors.append("Could Not Send Mail. Try Again Later.")
 
-		if len(errors) > 0:
-			return render_template('error.html', errors=errors)
-
+        #if len(errors) > 0:
+        #    return render_template('error.html', errors=errors)
 
 # Edit Balance
 @app.route('/edit_balance/<string:id>', methods=['GET', 'POST'])
