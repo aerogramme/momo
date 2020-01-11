@@ -331,11 +331,14 @@ def signup():
         email = form.email.data
         phone = form.phone.data
         username = form.username.data
+        password = form.password.data
+
+        # request.form['password']
 
         reg = mongo.db.Register
         existing_user = reg.find_one({"Username": username})
         if existing_user is not None:
-            hashed_pw = sha256_crypt.hash((str(request.form['password'])))
+            hashed_pw = sha256_crypt.hash((str(password)))
             reg.insert_one({
                 "Name": name,
                 "Email": email,
@@ -366,7 +369,7 @@ def login():
 
         # Get user by username
         # Get stored hash
-        hashed_pw = mongo.db.Register.find_one({"Username":username})["Password"]
+        hashed_pw = mongo.db.Register.find_one({"Username":username})[0]["Password"]
 
         # Compare Passwords
         if sha256_crypt.verify(password_candidate, hashed_pw):
