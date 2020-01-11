@@ -372,9 +372,9 @@ def login():
         username = request.form['username']
         password_candidate = request.form['password']
 
-        if username is None:
-            error = 'Username not found'
-            return render_template('login.html', error = error)
+        # if username is None or password_candidate is None:
+        #     error = 'Username/Password not found'
+        #     return render_template('login.html', error = error)
 
         # Get user by username
         # Get stored hash
@@ -388,7 +388,7 @@ def login():
 
             flash('You are now logged in', 'success')
             return redirect(url_for('dashboard'))
-        else:
+        elif username is None or password_candidate is None:
             error = 'Invalid Password/Username not found'
             return render_template('login.html', error = error)
         # else:
