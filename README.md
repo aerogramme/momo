@@ -62,5 +62,8 @@ python app.py
  - http://35.236.211.103/balance
  - http://35.236.211.103/loan
 
+# Withdraw POST request
  ![alt text](https://github.com/aerogramme/momo/blob/master/withdraw.png)
+
+# TopUp POST request
  ![alt text](https://github.com/aerogramme/momo/blob/master/topup.png)
