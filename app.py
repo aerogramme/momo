@@ -338,7 +338,7 @@ def signup():
         reg = mongo.db.Register
         existing_user = reg.find_one({"Username": username})
         if existing_user is not None:
-            hashed_pw = sha256_crypt.hash((str(password)))
+            hashed_pw = sha256_crypt.hash(password)
             reg.insert_one({
                 "Name": name,
                 "Email": email,
@@ -369,7 +369,7 @@ def login():
 
         # Get user by username
         # Get stored hash
-        hashed_pw = mongo.db.Register.find_one({"Username":username})[0]["Password"]
+        hashed_pw = mongo.db.Register.find_one({"Username":username})["Password"]
 
         # Compare Passwords
         if sha256_crypt.verify(password_candidate, hashed_pw):
@@ -431,7 +431,7 @@ def change_password():
             # Query for user from database and check password
             elif len(errors) == 0:
                 #if verifyPw(username, current_password):
-                hashed_pw = sha256_crypt.hash(str(new_password))
+                hashed_pw = sha256_crypt.hash(password)
                     # update password
                 mongo.db.Register.update_one({
                     "Username": username
