@@ -994,4 +994,4 @@ api.add_resource(TakeLoan, '/loan')
 api.add_resource(PayLoan, '/pay')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',post=80,debug=True)
+    app.run(host='0.0.0.0',port=80,debug=True)
