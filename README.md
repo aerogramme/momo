@@ -37,3 +37,30 @@ python app.py
 ```
 
 # momo
+
+# API EndPoints
+# POST Request:
+ - Body
+ {
+   "username": "nana",
+   "password": "admin123",
+   "name":"Golden Rule",
+   "to":"worldboss",
+   "fromPhone":"0244120126",
+   "toPhone":"0243559227",
+   "email":"theodondre@gmail.com",
+   "amount": 5,
+   "network": "MTN"
+}
+
+ - http://35.236.211.103/pay
+ - http://35.236.211.103/topup
+ - http://35.236.211.103/withdraw
+ - http://35.236.211.103/pay
+ - http://35.236.211.103/register
+ - http://35.236.211.103/transfer
+ - http://35.236.211.103/balance
+ - http://35.236.211.103/loan
+
+ # https://github.com/aerogramme/momo/blob/master/Screen%20Shot%202020-01-11%20at%203.08.58%20PM.png
+ # https://github.com/aerogramme/momo/blob/master/topup.png

@@ -380,10 +380,6 @@ def login():
         username = form.username.data # request.form['username']
         password_candidate = form.password.data # request.form['password']
 
-        # if username is None or password_candidate is None:
-        #     error = 'Username/Password not found'
-        #     return render_template('login.html', error = error)
-
         # Get user by username
         # Get stored hash
         hashed_pw = mongo.db.Register.find_one({"Username": username})
@@ -396,12 +392,19 @@ def login():
 
             flash('You are now logged in', 'success')
             return redirect(url_for('dashboard'))
+
+        if not sha256_crypt.verify(str(password_candidate), hashed_pw['Password']):
+            error = 'Invalid password'
+            return render_template('login.html', error = error)
         if username is None or username =='':
             error = 'Username is required'
             return render_template('login.html', error = error)
         if password_candidate is None or password_candidate =='':
-            error = 'password_candidate is required'
-            return render_template('login.html', error=error)
+            error = 'Password is required'
+            return render_template('login.html', error = error)
+        if password_candidate=='' and username=='':
+            error = 'Password/Username is required'
+            return render_template('login.html', error = error)
     return render_template('login.html')
 
 # Balance Form Class
