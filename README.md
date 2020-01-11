@@ -62,5 +62,5 @@ python app.py
  - http://35.236.211.103/balance
  - http://35.236.211.103/loan
 
- # https://github.com/aerogramme/momo/blob/master/Screen%20Shot%202020-01-11%20at%203.08.58%20PM.png
+ # https://github.com/aerogramme/momo/blob/master/withdraw.png
  # https://github.com/aerogramme/momo/blob/master/topup.png
