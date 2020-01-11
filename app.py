@@ -4,7 +4,7 @@ from functools import wraps
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
-from pymongo import MongoClient
+#from pymongo import MongoClient
 from passlib.hash import sha256_crypt
 from itsdangerous import URLSafeTimedSerializer
 import bcrypt
@@ -13,6 +13,7 @@ import json
 import uuid
 from flask_mail import Message
 from threading import Thread
+from bson.json_util import dumps
 
 #import sendmail
 import dns # required for connecting with SRV
@@ -322,6 +323,13 @@ def UserExist(username):
     else:
         return True
 
+
+@app.route('/show')
+def showdata():
+    data = mongo.db.Register.find_one({"Username":"Theo.kartel"})
+
+    return dumps(data['Username'] + ':' + data['Password'])
+
 # User Register
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -337,8 +345,9 @@ def signup():
 
         reg = mongo.db.Register
         existing_user = reg.find_one({"Username": username})
-        if existing_user is not None:
-            hashed_pw = sha256_crypt.hash(password)
+        if existing_user is None:
+            hashed_pw = sha256_crypt.hash(str(password))
+            # insert into db
             reg.insert_one({
                 "Name": name,
                 "Email": email,
@@ -369,10 +378,10 @@ def login():
 
         # Get user by username
         # Get stored hash
-        hashed_pw = mongo.db.Register.find_one({"Username":username})["Password"]
+        hashed_pw = mongo.db.Register.find_one({"Username": username})
 
         # Compare Passwords
-        if sha256_crypt.verify(password_candidate, hashed_pw):
+        if sha256_crypt.verify(str(password_candidate), hashed_pw['Password']):
             #passed
             session['logged_in'] = True
             session['username'] = username
@@ -985,4 +994,4 @@ api.add_resource(TakeLoan, '/loan')
 api.add_resource(PayLoan, '/pay')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=80,debug=True)
+    app.run(debug=True)
