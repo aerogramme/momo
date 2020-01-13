@@ -191,7 +191,7 @@ try {
 
 
 
-# License
+# LICENSE
 <br/>
 Copyright (C) 2020 aerograme.io <br/>
 <br/>
@@ -207,6 +207,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br/>
 See the License for the specific language governing permissions and<br/>
 limitations under the License.<br/><br/>
 
-# Contact us
+# CONTACT US
 <br/>
 Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
