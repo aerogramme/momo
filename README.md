@@ -192,7 +192,8 @@ try {
 
 
 
-# LICENSE
+LICENSE
+
 	<br/>
 	Copyright (C) 2020 aerograme.io <br/>
 	<br/>
@@ -208,11 +209,11 @@ try {
 	See the License for the specific language governing permissions and<br/>
 	limitations under the License.<br/><br/>
 
-# CONTACT US
+CONTACT US
 
 <br/>
  - Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
 
-# Contributors
+CONTRIBUTORS
 
  - Theophilus Siameh
