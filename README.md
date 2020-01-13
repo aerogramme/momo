@@ -1,7 +1,7 @@
 # MobileMoney App
-
+```
 Simple Mobile Money application with authentication and CRUD functionality. Contributors are welcome.
-
+```
 ![alt text](https://github.com/aerogramme/momo/blob/master/dashboard.png)
 
 # Features
@@ -13,7 +13,7 @@ Simple Mobile Money application with authentication and CRUD functionality. Cont
 - Users can Transfer money to other mobile money wallet
 - Users can Withdraw money from their mobile money wallet
 
-### Installation
+# Installation
 
 To use this template, your computer needs:
 
@@ -33,21 +33,22 @@ To use this template, your computer needs:
 ### Running the app in docker container
 
 # Using Docker:
-
+```
 - docker-compose up
-
+```
 # CD into Docker
+```
 - docker-compose exec -it <name of container> bash
-
+```
 
 ### Running the app locally
 
-```bash
+```
 python app.py
 ```
 
 # API EndPoints
-# POST Request:
+#### POST Request:
  - Body
  ```
  {
