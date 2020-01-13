@@ -49,17 +49,19 @@ python app.py
 # API EndPoints
 # POST Request:
  - Body
+ ```
  { <br/>
-   "username": "nana",<br/>
-   "password": "admin123",<br/>
-   "name":"Golden Rule",<br/>
-   "to":"worldboss",<br/>
-   "fromPhone":"0244120126",<br/>
-   "toPhone":"0243559227",<br/>
-   "email":"theodondre@gmail.com",<br/>
-   "amount": 5,<br/>
-   "network": "MTN"<br/>
-}<br/>
+   "username": "nana",
+   "password": "admin123",
+   "name":"Golden Rule",
+   "to":"worldboss",
+   "fromPhone":"0244120126",
+   "toPhone":"0243559227",
+   "email":"theodondre@gmail.com",
+   "amount": 5,
+   "network": "MTN"
+}
+```
 
  - http://35.236.211.103/pay
  - http://35.236.211.103/topup
@@ -78,7 +80,8 @@ python app.py
 # TopUp POST request
  ![alt text](https://github.com/aerogramme/momo/blob/master/topup.png)
 
- # CURL
+# CURL
+```
  curl -X POST \
   http://35.236.211.103:80/balance \
   -H 'Accept: */*' \
@@ -102,8 +105,10 @@ python app.py
    "amount": 150,
    "network": "MTN"
 }'
+```
 
 # PYTHON
+```
 import requests
 
 url = "http://35.236.211.103:80/balance"
@@ -126,30 +131,30 @@ headers = {
 response = requests.request("POST", url, data=payload, headers=headers)
 
 print(response.text)
-
+```
 
 # JAVA
 ```
-OkHttpClient client = new OkHttpClient();<br/>
+OkHttpClient client = new OkHttpClient();
 
-MediaType mediaType = MediaType.parse("application/json"); \
-RequestBody body = RequestBody.create(mediaType, "{\n   \"username\": \"mark.garr\",\n   \"password\": \"admin123\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}"); \
-Request request = new Request.Builder() \
-  .url("http://35.236.211.103:80/balance") \
-  .post(body) \
-  .addHeader("Content-Type", "application/json") \
-  .addHeader("User-Agent", "PostmanRuntime/7.18.0") \
-  .addHeader("Accept", "*/*") \
-  .addHeader("Cache-Control", "no-cache") \
-  .addHeader("Postman-Token", "5fa14877-38f5-4ef7-8216-f107c4ad5e8e,469c96af-a20a-4814-b39c-32f957bffce2") \
-  .addHeader("Host", "35.236.211.103:80") \
-  .addHeader("Accept-Encoding", "gzip, deflate") \
-  .addHeader("Content-Length", "233") \
-  .addHeader("Connection", "keep-alive") \
-  .addHeader("cache-control", "no-cache") \
-  .build();<br/>
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\n   \"username\": \"mark.garr\",\n   \"password\": \"admin123\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}");
+Request request = new Request.Builder()
+  .url("http://35.236.211.103:80/balance")
+  .post(body)
+  .addHeader("Content-Type", "application/json")
+  .addHeader("User-Agent", "PostmanRuntime/7.18.0")
+  .addHeader("Accept", "*/*")
+  .addHeader("Cache-Control", "no-cache")
+  .addHeader("Postman-Token", "5fa14877-38f5-4ef7-8216-f107c4ad5e8e,469c96af-a20a-4814-b39c-32f957bffce2")
+  .addHeader("Host", "35.236.211.103:80")
+  .addHeader("Accept-Encoding", "gzip, deflate")
+  .addHeader("Content-Length", "233")
+  .addHeader("Connection", "keep-alive")
+  .addHeader("cache-control", "no-cache")
+  .build();
 
-Response response = client.newCall(request).execute();\
+Response response = client.newCall(request).execute();
 ```
 
 # PHP
