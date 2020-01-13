@@ -120,7 +120,7 @@ print(response.text)
 # JAVA
 OkHttpClient client = new OkHttpClient(); \
 
-MediaType mediaType = MediaType.parse("application/json");
+MediaType mediaType = MediaType.parse("application/json"); \
 RequestBody body = RequestBody.create(mediaType, "{\n   \"username\": \"mark.garr\",\n   \"password\": \"admin123\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}"); \
 Request request = new Request.Builder() \
   .url("http://35.236.211.103:80/balance") \
@@ -142,9 +142,9 @@ Response response = client.newCall(request).execute();\
 # PHP
 <?php
 
-$request = new HttpRequest();
-$request->setUrl('http://35.236.211.103:80/balance');
-$request->setMethod(HTTP_METH_POST);
+$request = new HttpRequest(); \
+$request->setUrl('http://35.236.211.103:80/balance'); \
+$request->setMethod(HTTP_METH_POST); \
 
 $request->setHeaders(array(
   'cache-control' => 'no-cache',
@@ -157,7 +157,7 @@ $request->setHeaders(array(
   'Accept' => '*/*',
   'User-Agent' => 'PostmanRuntime/7.18.0',
   'Content-Type' => 'application/json'
-));
+)); \
 
 $request->setBody('{
    "username": "mark.garr",
@@ -169,14 +169,14 @@ $request->setBody('{
    "email":"theodondre@gmail.com",
    "amount": 150,
    "network": "MTN"
-}');
+}'); \
 
 try {
-  $response = $request->send();
+  $response = $request->send(); \
 
-  echo $response->getBody();
+  echo $response->getBody(); \
 } catch (HttpException $ex) {
-  echo $ex;
+  echo $ex; \
 }
 
 
