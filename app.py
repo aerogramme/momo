@@ -41,6 +41,19 @@ api = Api(app)
 #client = MongoClient("mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority")
 #mongo = client.MobileMoneyDB
 #users = db["Users"]
+
+# import pymongo
+# from bson.json_util import dumps
+# import json
+#
+# mongo = pymongo.MongoClient('mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority', maxPoolSize=50, connect=False)
+#
+# db = pymongo.database.Database(mongo, 'mydatabase')
+# col = pymongo.collection.Collection(db, 'mycollection')
+#
+# col_results = json.loads(dumps(col.find().limit(5).sort("time", -1)))
+
+
 users = list(range(100))
 
 #api = Api(app)
@@ -67,6 +80,12 @@ def logout():
 def date_time():
     # current date and time
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+def getPrettyTime():
+    """Get user's pretty current time"""
+    rightnow = datetime.today()
+    prettytime = rightnow.ctime()
+    return prettytime
 
 def transaction_id():
     return str(uuid.uuid4())
