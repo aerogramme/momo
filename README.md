@@ -1,6 +1,6 @@
 # MobileMoney App
 
-Simple Mobile Money application with authentication and CRUD functionality
+Simple Mobile Money application with authentication and CRUD functionality. Contributors are welcome.
 
 ![alt text](https://github.com/aerogramme/momo/blob/master/dashboard.png)
 
@@ -192,21 +192,24 @@ try {
 
 
 # LICENSE
-<br/>
-Copyright (C) 2020 aerograme.io <br/>
-<br/>
-Licensed under the Apache License, Version 2.0 (the "License"); <br/>
-you may not use this file except in compliance with the License. <br/>
-You may obtain a copy of the License at <br/>
-<br/>
-https://github.com/aerogramme/momo/LICENSE <br/>
-<br/>
-Unless required by applicable law or agreed to in writing, software <br/>
-distributed under the License is distributed on an "AS IS" BASIS,<br/>
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br/>
-See the License for the specific language governing permissions and<br/>
-limitations under the License.<br/><br/>
+	<br/>
+	Copyright (C) 2020 aerograme.io <br/>
+	<br/>
+	Licensed under the Apache License, Version 2.0 (the "License"); <br/>
+	you may not use this file except in compliance with the License. <br/>
+	You may obtain a copy of the License at <br/>
+	<br/>
+	https://github.com/aerogramme/momo/LICENSE <br/>
+	<br/>
+	Unless required by applicable law or agreed to in writing, software <br/>
+	distributed under the License is distributed on an "AS IS" BASIS,<br/>
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br/>
+	See the License for the specific language governing permissions and<br/>
+	limitations under the License.<br/><br/>
 
 # CONTACT US
 <br/>
-Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
+ - Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
+
+# Contributors
+ - Theophilus Siameh
