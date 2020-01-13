@@ -142,42 +142,42 @@ Response response = client.newCall(request).execute();\
 # PHP
 <?php
 
-$request = new HttpRequest();\
-$request->setUrl('http://35.236.211.103:80/balance');\
-$request->setMethod(HTTP_METH_POST);\
+$request = new HttpRequest();
+$request->setUrl('http://35.236.211.103:80/balance');
+$request->setMethod(HTTP_METH_POST);
 
-$request->setHeaders(array(\
-  'cache-control' => 'no-cache',\
-  'Connection' => 'keep-alive',\
-  'Content-Length' => '233',\
-  'Accept-Encoding' => 'gzip, deflate',\
-  'Host' => '35.236.211.103:80',\
-  'Postman-Token' => '5fa14877-38f5-4ef7-8216-f107c4ad5e8e,112e030d-9470-4e2e-87ed-dc758b0194e3',\
-  'Cache-Control' => 'no-cache',\
-  'Accept' => '*/*',\
-  'User-Agent' => 'PostmanRuntime/7.18.0',\
-  'Content-Type' => 'application/json'\
-));\
+$request->setHeaders(array(
+  'cache-control' => 'no-cache',
+  'Connection' => 'keep-alive',
+  'Content-Length' => '233',
+  'Accept-Encoding' => 'gzip, deflate',
+  'Host' => '35.236.211.103:80',
+  'Postman-Token' => '5fa14877-38f5-4ef7-8216-f107c4ad5e8e,112e030d-9470-4e2e-87ed-dc758b0194e3',
+  'Cache-Control' => 'no-cache',
+  'Accept' => '*/*',
+  'User-Agent' => 'PostmanRuntime/7.18.0',
+  'Content-Type' => 'application/json'
+));
 
-$request->setBody('{\
-   "username": "mark.garr",\
-   "password": "admin123",\
-   "name":"Golden Rule",\
-   "to":"worldboss",\
-   "fromPhone":"0244120126",\
-   "toPhone":"0243559227",\
-   "email":"theodondre@gmail.com",\
-   "amount": 150,\
-   "network": "MTN"\
-}');\
+$request->setBody('{
+   "username": "mark.garr",
+   "password": "admin123",
+   "name":"Golden Rule",
+   "to":"worldboss",
+   "fromPhone":"0244120126",
+   "toPhone":"0243559227",
+   "email":"theodondre@gmail.com",
+   "amount": 150,
+   "network": "MTN"
+}');
 
-try {\
-  $response = $request->send();\
+try {
+  $response = $request->send();
 
-  echo $response->getBody();\
-} catch (HttpException $ex) {\
-  echo $ex;\
-}\
+  echo $response->getBody();
+} catch (HttpException $ex) {
+  echo $ex;
+}
 
 
 # JAVASCRIPT XHR
