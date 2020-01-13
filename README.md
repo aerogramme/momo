@@ -192,7 +192,7 @@ try {
 
 
 ### License
-
+<br/>
 Copyright (C) 2020 aerograme.io <br/>
 
 Licensed under the Apache License, Version 2.0 (the "License"); <br/>
@@ -208,5 +208,5 @@ See the License for the specific language governing permissions and<br/>
 limitations under the License.<br/>
 
 ### Contact us
-
+<br/>
 Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
