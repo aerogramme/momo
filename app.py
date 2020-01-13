@@ -1,3 +1,6 @@
+
+#!/usr/bin/python
+
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from flask_pymongo import PyMongo
 from functools import wraps

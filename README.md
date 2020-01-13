@@ -16,7 +16,6 @@ To use this template, your computer needs:
 	  - Register
 	  - Takeloan
 	  - TopUp
-	  - TopUps
 	  - Transfer
 	  - Withdrawal
 
