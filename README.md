@@ -45,8 +45,6 @@ To use this template, your computer needs:
 python app.py
 ```
 
-# momo
-
 # API EndPoints
 # POST Request:
  - Body
@@ -192,7 +190,7 @@ try {
 <br/>
 
 
-# License
+### License
 Copyright (C) 2020 aerograme.io
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -207,5 +205,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-# Contact us
+### Contact us
 Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you!
