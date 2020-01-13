@@ -6,7 +6,8 @@ Simple Mobile Money application with authentication and CRUD functionality. Cont
 
 # Features
 - Users can Pay loan
-- Users can Register an account
+- Users can signup for an account
+- Users can login into a registered account
 - Users can Take loan
 - Users can Top Up money on their mobile money wallet
 - Users can Transfer money to other mobile money wallet
