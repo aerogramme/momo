@@ -211,11 +211,9 @@ try {
 ```
 
 # CONTACT US
-
 <br/>
 ```
  - Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
-<br/>
 ```
 # CONTRIBUTORS
 <br/>
