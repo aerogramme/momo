@@ -2,6 +2,16 @@
 
 Simple Mobile Money application with authentication and CRUD functionality
 
+![alt text](https://github.com/aerogramme/momo/blob/master/dashboard.png)
+
+# Features
+- Users can Pay loan
+- Users can Register an account
+- Users can Take loan
+- Users can Top Up money on their mobile money wallet
+- Users can Transfer money to other mobile money wallet
+- Users can Withdraw money from their mobile money wallet
+
 ### Installation
 
 To use this template, your computer needs:
@@ -100,6 +110,7 @@ import requests
 url = "http://35.236.211.103:80/balance"
 
 payload = "{\n   \"username\": \"mark.garr\",\n   \"password\": \"admin123\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}"
+
 headers = {
     'Content-Type': "application/json",
     'User-Agent': "PostmanRuntime/7.18.0",
@@ -119,7 +130,7 @@ print(response.text)
 
 
 # JAVA
-OkHttpClient client = new OkHttpClient(); \
+OkHttpClient client = new OkHttpClient();<br/>
 
 MediaType mediaType = MediaType.parse("application/json"); \
 RequestBody body = RequestBody.create(mediaType, "{\n   \"username\": \"mark.garr\",\n   \"password\": \"admin123\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}"); \
@@ -136,7 +147,7 @@ Request request = new Request.Builder() \
   .addHeader("Content-Length", "233") \
   .addHeader("Connection", "keep-alive") \
   .addHeader("cache-control", "no-cache") \
-  .build(); \
+  .build();<br/>
 
 Response response = client.newCall(request).execute();\
 
@@ -179,3 +190,22 @@ try {
   echo $ex; <br/>
 }
 <br/>
+
+
+# License
+Copyright (C) 2020 aerograme.io
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+https://github.com/aerogramme/momo/LICENSE
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+# Contact us
+Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you!

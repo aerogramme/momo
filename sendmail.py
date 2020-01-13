@@ -93,7 +93,7 @@ def CreateMessage(sender, to, subject, message_text):
 	# return {'raw': base64.urlsafe_b64encode(message.as_string())}
 	return {'raw': base64.urlsafe_b64encode(message.as_string().encode()).decode()}
 
-def SendPasswordResetMail(user, generated_password, sender='krish.raghuram@gmail.com'):
+def SendPasswordResetMail(user, generated_password, sender='theodondre@gmail.com'):
 	to = user.email
 	subject = "Link to Reset Password for FlaskApp"
 	message_text = """
@@ -139,7 +139,7 @@ def SendPasswordResetMail(user, generated_password, sender='krish.raghuram@gmail
 # 	###################################################################
 # 	###################################################################
 
-# 	message = CreateMessage('krish.raghuram@gmail.com', 'k.raghuram@iitg.ac.in', 'TEST', 'Hello World')
+# 	message = CreateMessage('theodondre@gmail.com', 'support@aerogramme.io', 'TEST', 'Hello World')
 # 	sent_message = SendMessage(service, 'me', message)
 
 # if __name__ == '__main__':

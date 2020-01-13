@@ -476,7 +476,7 @@ def change_password():
 # send email
 ######################
 class EmailForm(Form):
-    email = StringField('Email', [validators.DataRequired(), validators.Length(min=6, max=50)])
+    email = StringField('Email', [validators.DataRequired(), Email(), validators.Length(min=6, max=50)])
     #email = StringField('Email', validators=[validators.DataRequired(), Email(), Length(min=6, max=40)])
 
 class PasswordForm(Form):
@@ -513,7 +513,7 @@ def reset():
             email = form.email.data
             emailFound = mongo.db.Register.find_one({"Email":email})["Email"]
         except:
-            flash('Invalid email address!', 'error')
+            flash('There is no account with that email. You must register first.!', 'error')
             return render_template('password_reset_email.html', form=form)
 
         if emailFound:
