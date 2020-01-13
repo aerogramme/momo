@@ -151,6 +151,7 @@ Request request = new Request.Builder() \
 Response response = client.newCall(request).execute();\
 
 # PHP
+```
 <?php <br/>
 $request = new HttpRequest(); <br/>
 $request->setUrl('http://35.236.211.103:80/balance'); <br/>
@@ -188,12 +189,11 @@ try {
   echo $ex; <br/>
 }
 <br/><br/>
+```
 
 
-
-
-LICENSE
-
+# LICENSE
+```
 	<br/>
 	Copyright (C) 2020 aerograme.io <br/>
 	<br/>
@@ -208,13 +208,17 @@ LICENSE
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br/>
 	See the License for the specific language governing permissions and<br/>
 	limitations under the License.<br/><br/>
+```
 
-CONTACT US
+# CONTACT US
 
 <br/>
+```
  - Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
 <br/>
+```
+# CONTRIBUTORS
 <br/>
-CONTRIBUTORS
-<br/>
+```
  - Theophilus Siameh
+ ```
