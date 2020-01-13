@@ -177,43 +177,44 @@ try {
 } catch (HttpException $ex) {
   echo $ex; <br/>
 }
-
+<br/>
 
 # JAVASCRIPT XHR
-var data = JSON.stringify({
-  "username": "mark.garr",
-  "password": "admin123",
-  "name": "Golden Rule",
-  "to": "worldboss",
-  "fromPhone": "0244120126",
-  "toPhone": "0243559227",
-  "email": "theodondre@gmail.com",
-  "amount": 150,
-  "network": "MTN"
-});
 
-var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+var data = JSON.stringify({ <br/>
+  "username": "mark.garr",<br/>
+  "password": "admin123",<br/>
+  "name": "Golden Rule",<br/>
+  "to": "worldboss",<br/>
+  "fromPhone": "0244120126",<br/>
+  "toPhone": "0243559227",<br/>
+  "email": "theodondre@gmail.com",<br/>
+  "amount": 150,<br/>
+  "network": "MTN"<br/>
+});<br/>
 
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === 4) {
-    console.log(this.responseText);
-  }
-});
+var xhr = new XMLHttpRequest();<br/>
+xhr.withCredentials = true;<br/>
 
-xhr.open("POST", "http://35.236.211.103:80/balance");
-xhr.setRequestHeader("Content-Type", "application/json");
-xhr.setRequestHeader("User-Agent", "PostmanRuntime/7.18.0");
-xhr.setRequestHeader("Accept", "*/*");
-xhr.setRequestHeader("Cache-Control", "no-cache");
-xhr.setRequestHeader("Postman-Token", "5fa14877-38f5-4ef7-8216-f107c4ad5e8e,0441ea12-72bb-4a4a-9984-e78d1ea9dad7");
-xhr.setRequestHeader("Host", "35.236.211.103:80");
-xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
-xhr.setRequestHeader("Content-Length", "233");
-xhr.setRequestHeader("Connection", "keep-alive");
-xhr.setRequestHeader("cache-control", "no-cache");
+xhr.addEventListener("readystatechange", function () {<br/>
+  if (this.readyState === 4) {<br/>
+    console.log(this.responseText);<br/>
+  }<br/>
+});<br/>
 
-xhr.send(data);
+xhr.open("POST", "http://35.236.211.103:80/balance");<br/>
+xhr.setRequestHeader("Content-Type", "application/json");<br/>
+xhr.setRequestHeader("User-Agent", "PostmanRuntime/7.18.0");<br/>
+xhr.setRequestHeader("Accept", "*/*");<br/>
+xhr.setRequestHeader("Cache-Control", "no-cache");<br/>
+xhr.setRequestHeader("Postman-Token", "5fa14877-38f5-4ef7-8216-f107c4ad5e8e,0441ea12-72bb-4a4a-9984-e78d1ea9dad7");<br/>
+xhr.setRequestHeader("Host", "35.236.211.103:80");<br/>
+xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");<br/>
+xhr.setRequestHeader("Content-Length", "233");<br/>
+xhr.setRequestHeader("Connection", "keep-alive");<br/>
+xhr.setRequestHeader("cache-control", "no-cache");<br/>
+
+xhr.send(data);<br/>
 
 # NODEJS NATIVE
 var http = require("http");
