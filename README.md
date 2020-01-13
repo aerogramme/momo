@@ -40,23 +40,24 @@ python app.py
 # API EndPoints
 # POST Request:
  - Body
- {
-   "username": "nana",
-   "password": "admin123",
-   "name":"Golden Rule",
-   "to":"worldboss",
-   "fromPhone":"0244120126",
-   "toPhone":"0243559227",
-   "email":"theodondre@gmail.com",
-   "amount": 5,
-   "network": "MTN"
-}
+ { <br/>
+   "username": "nana",<br/>
+   "password": "admin123",<br/>
+   "name":"Golden Rule",<br/>
+   "to":"worldboss",<br/>
+   "fromPhone":"0244120126",<br/>
+   "toPhone":"0243559227",<br/>
+   "email":"theodondre@gmail.com",<br/>
+   "amount": 5,<br/>
+   "network": "MTN"<br/>
+}<br/>
 
  - http://35.236.211.103/pay
  - http://35.236.211.103/topup
  - http://35.236.211.103/withdraw
  - http://35.236.211.103/pay
- - http://35.236.211.103/register
+ - http://35.236.211.103/signup
+ - http://35.236.211.103/login
  - http://35.236.211.103/transfer
  - http://35.236.211.103/balance
  - http://35.236.211.103/loan
