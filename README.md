@@ -140,43 +140,42 @@ Request request = new Request.Builder() \
 Response response = client.newCall(request).execute();\
 
 # PHP
-<?php
+<?php <br/>
+$request = new HttpRequest(); <br/>
+$request->setUrl('http://35.236.211.103:80/balance'); <br/>
+$request->setMethod(HTTP_METH_POST); <br/>
 
-$request = new HttpRequest(); \
-$request->setUrl('http://35.236.211.103:80/balance'); \
-$request->setMethod(HTTP_METH_POST); \
-
-$request->setHeaders(array(
-  'cache-control' => 'no-cache',
-  'Connection' => 'keep-alive',
-  'Content-Length' => '233',
-  'Accept-Encoding' => 'gzip, deflate',
-  'Host' => '35.236.211.103:80',
-  'Postman-Token' => '5fa14877-38f5-4ef7-8216-f107c4ad5e8e,ad50d6e9-550f-4439-8a78-20bdccd39d1c',
-  'Cache-Control' => 'no-cache',
-  'Accept' => '*/*',
-  'User-Agent' => 'PostmanRuntime/7.18.0',
-  'Content-Type' => 'application/json'
-)); \
+$request->setHeaders(array( <br/>
+  'cache-control' => 'no-cache',<br/>
+  'Connection' => 'keep-alive',<br/>
+  'Content-Length' => '233',<br/>
+  'Accept-Encoding' => 'gzip, deflate',<br/>
+  'Host' => '35.236.211.103:80',<br/>
+  'Postman-Token' => '5fa14877-38f5-4ef7-8216-f107c4ad5e8e,ad50d6e9-550f-4439-8a78-20bdccd39d1c',<br/>
+  'Cache-Control' => 'no-cache',<br/>
+  'Accept' => '*/*',<br/>
+  'User-Agent' => 'PostmanRuntime/7.18.0',<br/>
+  'Content-Type' => 'application/json' <br/>
+)); <br/>
 
 $request->setBody('{
-   "username": "mark.garr",
-   "password": "admin123",
-   "name":"Golden Rule",
-   "to":"worldboss",
-   "fromPhone":"0244120126",
-   "toPhone":"0243559227",
-   "email":"theodondre@gmail.com",
-   "amount": 150,
-   "network": "MTN"
-}'); \
+   "username": "mark.garr",<br/>
+   "password": "admin123",<br/>
+   "name":"Golden Rule",<br/>
+   "to":"worldboss",<br/>
+   "fromPhone":"0244120126",<br/>
+   "toPhone":"0243559227",<br/>
+   "email":"theodondre@gmail.com",<br/>
+   "amount": 150,<br/>
+   "network": "MTN"<br/>
+}'); <br/>
 
 try {
-  $response = $request->send(); \
+  $response = $request->send(); <br/>
 
-  echo $response->getBody(); \
+  echo $response->getBody(); <br/>
 } catch (HttpException $ex) {
-  echo $ex; \
+  echo $ex; <br/>
 }
 
 
