@@ -129,6 +129,7 @@ print(response.text)
 
 
 # JAVA
+```
 OkHttpClient client = new OkHttpClient();<br/>
 
 MediaType mediaType = MediaType.parse("application/json"); \
@@ -149,6 +150,7 @@ Request request = new Request.Builder() \
   .build();<br/>
 
 Response response = client.newCall(request).execute();\
+```
 
 # PHP
 ```
