@@ -183,17 +183,15 @@ $request->setBody('{
 try {
   $response = $request->send(); <br/>
   echo $response->getBody(); <br/>
-} catch (HttpException $ex) {
+} catch (HttpException $ex) { <br/>
   echo $ex; <br/>
 }
+<br/><br/>
 
 
 
 
-
-
-
-# License
+### License
 
 Copyright (C) 2020 aerograme.io <br/>
 
@@ -209,7 +207,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br/>
 See the License for the specific language governing permissions and<br/>
 limitations under the License.<br/>
 
-# Contact us
+### Contact us
 
-<br/>
 Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
