@@ -50,7 +50,7 @@ python app.py
 # POST Request:
  - Body
  ```
- { <br/>
+ {
    "username": "nana",
    "password": "admin123",
    "name":"Golden Rule",
