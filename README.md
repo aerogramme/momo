@@ -209,12 +209,12 @@ try {
 ```
 
 # CONTACT US
-<br/>
 ```
+<br/>
  	- Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
 ```
 # CONTRIBUTORS
-<br/>
 ```
+<br/>
  	- Theophilus Siameh
  ```
