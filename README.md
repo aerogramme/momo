@@ -215,5 +215,5 @@ CONTACT US
  - Please, contact us via support@aerogramme.io if you are using this library, just to let us know :) Thank you! <br/>
 
 CONTRIBUTORS
-
+<br/>
  - Theophilus Siameh
