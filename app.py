@@ -14,6 +14,7 @@ import bcrypt
 from datetime import datetime
 import json
 import uuid
+from flask_mail import Mail
 from flask_mail import Message
 from threading import Thread
 from bson.json_util import dumps
@@ -30,6 +31,16 @@ from flask_paginate import Pagination, get_page_parameter,get_page_args
 #############################################
 
 app = Flask(__name__)
+app.config.update(dict(
+    DEBUG = True,
+    MAIL_SERVER = 'smtp.googlemail.com',
+    MAIL_PORT = 465,
+    MAIL_USE_TLS = False,
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = 'theodondre@gmail.com',
+    MAIL_PASSWORD = 'offpjnvauklxwivk'
+))
+
 
 app.config['SECRET_KEY'] = "MobileMoney"
 #app.config["MONGO_URI"] = "mongodb://localhost:27017/MobileMoneyDB"
@@ -37,6 +48,8 @@ app.config["MONGO_URI"] = "mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.
 
 mongo = PyMongo(app)
 api = Api(app)
+mail = Mail(app)
+
 
 #client = MongoClient("mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority")
 #mongo = client.MobileMoneyDB
@@ -100,6 +113,41 @@ def index():
     #register = mongo.db.Register
     #list_users = register.insert_one({"Username":"Anthony"})
     return render_template('home.html')
+
+############################################
+# send email
+############################################
+def send_mail(subject,body,recipients):
+	try:
+		msg = Message(subject,
+		  			sender="theodondre@gmail.com",
+		  			recipients= [recipients])
+		msg.body = body
+		mail.send(msg)
+		return 'Mail sent!'
+	except Exception as e:
+		return(str(e))
+
+
+def send_email(subject, recipients, html_body):
+    msg = Message(subject, recipients=recipients)
+    msg.html = html_body
+    thr = Thread(target=send_async_email, args=[msg])
+    thr.start()
+
+def send_password_reset_email(user_email):
+    password_reset_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+
+    password_reset_url = url_for(
+        'reset_with_token',
+        token = password_reset_serializer.dumps(user_email, salt='password-reset-salt'),
+        _external=True)
+
+    html = render_template(
+        'email_password_reset.html',
+        password_reset_url = password_reset_url)
+
+    send_email('Password Reset Requested', user_email, html)
 
 #######################
 # Search
@@ -495,32 +543,11 @@ def change_password():
 # send email
 ######################
 class EmailForm(Form):
-    email = StringField('Email', [validators.DataRequired(), Email(), validators.Length(min=6, max=50)])
+    email = StringField('Email', [validators.DataRequired(), validators.Length(min=6, max=50)])
     #email = StringField('Email', validators=[validators.DataRequired(), Email(), Length(min=6, max=40)])
 
 class PasswordForm(Form):
     password = PasswordField('Password', [validators.DataRequired()])
-
-
-def send_email(subject, recipients, html_body):
-    msg = Message(subject, recipients=recipients)
-    msg.html = html_body
-    thr = Thread(target=send_async_email, args=[msg])
-    thr.start()
-
-def send_password_reset_email(user_email):
-    password_reset_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-
-    password_reset_url = url_for(
-        'reset_with_token',
-        token = password_reset_serializer.dumps(user_email, salt='password-reset-salt'),
-        _external=True)
-
-    html = render_template(
-        'email_password_reset.html',
-        password_reset_url = password_reset_url)
-
-    send_email('Password Reset Requested', user_email, html)
 
 
 @app.route('/reset', methods=["GET", "POST"])
@@ -590,9 +617,9 @@ def forgot_password():
         return render_template('forgot_password.html')
 
     elif request.method=='POST':
-        #Get the post data
+        # Get the post data
         emailFound = request.form.get('email')
-        username = request.form.get('username')
+        username   = request.form.get('username')
 
         if username is None or username=='':
             flash('Username is required')
@@ -602,7 +629,7 @@ def forgot_password():
         s = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         passlen = 16
         generated_password =  "".join(random.sample(s,passlen))
-        print(generated_password)
+        #print(generated_password)
         #pw_hash = bcrypt.generate_password_hash(generated_password).decode('utf-8')
         hashed_pw = sha256_crypt.hash(str(generated_password))
         # update password
@@ -616,9 +643,9 @@ def forgot_password():
 
         #Send Reset Mail
         #message = sendmail.SendPasswordResetMail(user, generated_password)
-        send_password_reset_email(emailFound)
-        flash('"Password Reset Link has been sent to your Email. "', 'success')
-        #return redirect(url_for('dashboard'))
+        send_mail("Password Reset","Password Reset has been sent to your Email. \nHere is your new password : {0}".format(generated_password),emailFound)
+        flash('Password Reset Link has been sent to your Email.', 'success')
+        return redirect(url_for('login'))
         #if message is not None:
         #    return "Password Reset Link has been sent to your Email. "
         #else:
