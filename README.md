@@ -97,7 +97,7 @@ python app.py
   -H 'cache-control: no-cache' \
   -d '{
    "username": "mark.garr",
-   "password": "admin123",
+   "password": "jpaNQbxv2hy09WPl",
    "name":"Golden Rule",
    "to":"worldboss",
    "fromPhone":"0244120126",
@@ -114,7 +114,7 @@ import requests
 
 url = "http://35.236.211.103:80/balance"
 
-payload = "{\n   \"username\": \"mark.garr\",\n   \"password\": \"admin123\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}"
+payload = "{\n   \"username\": \"mark.garr\",\n   \"password\": \"jpaNQbxv2hy09WPl\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}"
 
 headers = {
     'Content-Type': "application/json",
@@ -139,7 +139,7 @@ print(response.text)
 OkHttpClient client = new OkHttpClient();
 
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "{\n   \"username\": \"mark.garr\",\n   \"password\": \"admin123\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}");
+RequestBody body = RequestBody.create(mediaType, "{\n   \"username\": \"mark.garr\",\n   \"password\": \"jpaNQbxv2hy09WPl\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}");
 Request request = new Request.Builder()
   .url("http://35.236.211.103:80/balance")
   .post(body)
@@ -180,7 +180,7 @@ $request->setHeaders(array(
 
 $request->setBody('{
    "username": "mark.garr",
-   "password": "admin123",
+   "password": "jpaNQbxv2hy09WPl",
    "name":"Golden Rule",
    "to":"worldboss",
    "fromPhone":"0244120126",
