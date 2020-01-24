@@ -52,8 +52,8 @@ python app.py
  - Body
  ```
  {
-   "username": "nana",
-   "password": "admin123",
+   "username": "mark.garr",
+   "password": "jpaNQbxv2hy09WPl",
    "name":"Golden Rule",
    "to":"worldboss",
    "fromPhone":"0244120126",
