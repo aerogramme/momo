@@ -52,15 +52,17 @@ python app.py
  - Body
  ```
  {
-   "username": "mark.garr",
-   "password": "jpaNQbxv2hy09WPl",
-   "name":"Golden Rule",
-   "to":"worldboss",
-   "fromPhone":"0244120126",
-   "toPhone":"0243559227",
+   "username": "freeworldboss",
+   "password": "cq#4&Ds6~K+0iwU_",
+   "firstname":"THEOPHILUS",
+   "lastname":"SIAMEH",
+   "fromPhone":"0243559227",
+   "toPhone":"0205592278",
    "email":"theodondre@gmail.com",
-   "amount": 5,
-   "network": "MTN"
+   "amount": 8749.31,
+   "network": "MTN",
+   "fromNetwork":"MTN",
+   "toNetwork":"TIGO"
 }
 ```
 
@@ -96,15 +98,17 @@ python app.py
   -H 'User-Agent: PostmanRuntime/7.18.0' \
   -H 'cache-control: no-cache' \
   -d '{
-   "username": "mark.garr",
-   "password": "jpaNQbxv2hy09WPl",
-   "name":"Golden Rule",
-   "to":"worldboss",
-   "fromPhone":"0244120126",
-   "toPhone":"0243559227",
+   "username": "freeworldboss",
+   "password": "cq#4&Ds6~K+0iwU_",
+   "firstname":"THEOPHILUS",
+   "lastname":"SIAMEH",
+   "fromPhone":"0243559227",
+   "toPhone":"0205592278",
    "email":"theodondre@gmail.com",
-   "amount": 150,
-   "network": "MTN"
+   "amount": 8749.31,
+   "network": "MTN",
+   "fromNetwork":"MTN",
+   "toNetwork":"VODAFONE"
 }'
 ```
 
@@ -114,7 +118,7 @@ import requests
 
 url = "http://35.236.211.103:80/balance"
 
-payload = "{\n   \"username\": \"mark.garr\",\n   \"password\": \"jpaNQbxv2hy09WPl\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}"
+payload = "{\n   \"username\": \"freeworldboss\",\n   \"password\": \"cq#4&Ds6~K+0iwU_\",\n   \"firstname\":\"THEOPHILUS\",\n   \"lastname\":\"SIAMEH\",\n   \"fromPhone\":\"0243559227\",\n   \"toPhone\":\"0205592278\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 8749.31,\n   \"network\": \"MTN\",\n   \"fromNetwork\":\"MTN\",\n   \"toNetwork\":\"VODAFONE\"\n}"
 
 headers = {
     'Content-Type': "application/json",
@@ -139,7 +143,7 @@ print(response.text)
 OkHttpClient client = new OkHttpClient();
 
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "{\n   \"username\": \"mark.garr\",\n   \"password\": \"jpaNQbxv2hy09WPl\",\n   \"name\":\"Golden Rule\",\n   \"to\":\"worldboss\",\n   \"fromPhone\":\"0244120126\",\n   \"toPhone\":\"0243559227\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 150,\n   \"network\": \"MTN\"\n}");
+RequestBody body = RequestBody.create(mediaType, "{\n   \"username\": \"freeworldboss\",\n   \"password\": \"cq#4&Ds6~K+0iwU_\",\n   \"firstname\":\"THEOPHILUS\",\n   \"lastname\":\"SIAMEH\",\n   \"fromPhone\":\"0243559227\",\n   \"toPhone\":\"0205592278\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 8749.31,\n   \"network\": \"MTN\",\n   \"fromNetwork\":\"MTN\",\n   \"toNetwork\":\"VODAFONE\"\n}");
 Request request = new Request.Builder()
   .url("http://35.236.211.103:80/balance")
   .post(body)
@@ -179,15 +183,17 @@ $request->setHeaders(array(
 ));
 
 $request->setBody('{
-   "username": "mark.garr",
-   "password": "jpaNQbxv2hy09WPl",
-   "name":"Golden Rule",
-   "to":"worldboss",
-   "fromPhone":"0244120126",
-   "toPhone":"0243559227",
+   "username": "freeworldboss",
+   "password": "cq#4&Ds6~K+0iwU_",
+   "firstname":"THEOPHILUS",
+   "lastname":"SIAMEH",
+   "fromPhone":"0243559227",
+   "toPhone":"0205592278",
    "email":"theodondre@gmail.com",
-   "amount": 150,
-   "network": "MTN"
+   "amount": 8749.31,
+   "network": "MTN",
+   "fromNetwork":"MTN",
+   "toNetwork":"VODAFONE"
 }');
 
 try {
