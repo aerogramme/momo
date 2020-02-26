@@ -21,6 +21,8 @@ from itsdangerous import URLSafeTimedSerializer
 from passlib.hash import sha256_crypt
 from wtforms import Form, StringField, PasswordField, validators
 
+from Users.UserRegister import UsersRegisteration
+
 #############################################
 # Author: Theophilus Siameh
 #############################################
@@ -514,16 +516,18 @@ def signup():
             # hash password
             hashed_pw = sha256_crypt.hash(str(password))
             # insert into db
+
+            userReg = UsersRegisteration(firstname,lastname,email,phone,network,username,hashed_pw,balance=0.0, debt=0.0)
             reg.insert_one({
-                "FirstName": firstname,
-                "LastName": lastname,
-                "Email": email,
-                "Phone": phone,
-                "Network": network,
-                "Username": username,
-                "Password": hashed_pw,
-                "Balance": float(0.0),
-                "Debt": float(0.0),
+                "FirstName": userReg.firstname,
+                "LastName": userReg.lastname,
+                "Email": userReg.email,
+                "Phone": userReg.phone,
+                "Network": userReg.network,
+                "Username": userReg.username,
+                "Password": userReg.hashed_pw,
+                "Balance": userReg.balance,
+                "Debt": userReg.debt,
                 "DateTimeCreated": date_time(),
                 "apiKeys": generateApiKeys()
                 })

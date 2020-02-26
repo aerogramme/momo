@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3530751b-772b-47ec-8b4b-bb77ed37aca6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/basic-auth/digest_auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Users/UserRegister.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +42,7 @@
       <recent name="$PROJECT_DIR$/basic-auth" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.multi_auth">
+  <component name="RunManager" selected="Python.app (1)">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -191,11 +192,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.app (1)" />
         <item itemvalue="Python.multi_auth" />
         <item itemvalue="Python.token_auth" />
         <item itemvalue="Python.basic-auth" />
         <item itemvalue="Python.basicAuthDemo" />
-        <item itemvalue="Python.app (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -226,33 +227,33 @@
       <screen x="1680" y="23" width="2560" height="1417" />
     </state>
     <state x="2412" y="455" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582647461088" />
-    <state width="1659" height="428" key="GridCell.Tab.0.bottom" timestamp="1582758667312">
+    <state width="1659" height="289" key="GridCell.Tab.0.bottom" timestamp="1582759913496">
       <screen x="1680" y="23" width="2560" height="1417" />
     </state>
     <state width="2156" height="293" key="GridCell.Tab.0.bottom/0.23.1680.1001@0.23.1680.1001" timestamp="1582749236205" />
     <state width="1659" height="293" key="GridCell.Tab.0.bottom/0.23.1680.1002@0.23.1680.1002" timestamp="1582689312194" />
-    <state width="2156" height="293" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582741253386" />
+    <state width="1659" height="289" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582759913496" />
     <state width="1659" height="428" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582758667312" />
-    <state width="1659" height="428" key="GridCell.Tab.0.center" timestamp="1582758667311">
+    <state width="1659" height="289" key="GridCell.Tab.0.center" timestamp="1582759913495">
       <screen x="1680" y="23" width="2560" height="1417" />
     </state>
     <state width="2156" height="293" key="GridCell.Tab.0.center/0.23.1680.1001@0.23.1680.1001" timestamp="1582749236203" />
     <state width="1659" height="293" key="GridCell.Tab.0.center/0.23.1680.1002@0.23.1680.1002" timestamp="1582689312192" />
-    <state width="2156" height="293" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582741253385" />
+    <state width="1659" height="289" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582759913495" />
     <state width="1659" height="428" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582758667311" />
-    <state width="1659" height="428" key="GridCell.Tab.0.left" timestamp="1582758667310">
+    <state width="1659" height="289" key="GridCell.Tab.0.left" timestamp="1582759913494">
       <screen x="1680" y="23" width="2560" height="1417" />
     </state>
     <state width="2156" height="293" key="GridCell.Tab.0.left/0.23.1680.1001@0.23.1680.1001" timestamp="1582749236201" />
     <state width="1659" height="293" key="GridCell.Tab.0.left/0.23.1680.1002@0.23.1680.1002" timestamp="1582689312189" />
-    <state width="2156" height="293" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582741253383" />
+    <state width="1659" height="289" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582759913494" />
     <state width="1659" height="428" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582758667310" />
-    <state width="1659" height="428" key="GridCell.Tab.0.right" timestamp="1582758667311">
+    <state width="1659" height="289" key="GridCell.Tab.0.right" timestamp="1582759913496">
       <screen x="1680" y="23" width="2560" height="1417" />
     </state>
     <state width="2156" height="293" key="GridCell.Tab.0.right/0.23.1680.1001@0.23.1680.1001" timestamp="1582749236204" />
     <state width="1659" height="293" key="GridCell.Tab.0.right/0.23.1680.1002@0.23.1680.1002" timestamp="1582689312193" />
-    <state width="2156" height="293" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582741253385" />
+    <state width="1659" height="289" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582759913496" />
     <state width="1659" height="428" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582758667311" />
     <state x="319" y="143" key="SettingsEditor" timestamp="1582516567660">
       <screen x="0" y="23" width="1680" height="1002" />
