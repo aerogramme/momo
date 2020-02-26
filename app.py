@@ -12,8 +12,7 @@ from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask import Flask, jsonify, request
 from flask import render_template, flash, redirect, url_for, session
-from flask_mail import Mail
-from flask_mail import Message
+from flask_mail import Mail, Message
 from flask_paginate import Pagination, get_page_args
 from flask_pymongo import PyMongo
 from flask_restful import Api, Resource
@@ -199,7 +198,7 @@ def updateDebt(phone, balance):
 
 def transactionFee(amount):
     ''' 1% Transaction Fees '''
-    return amount * 0.01
+    return round(amount * 0.01, 2)
 
 
 # Index
@@ -223,25 +222,25 @@ def send_mail(subject,body,recipients):
         return(str(e))
 
 
-def send_email(subject, recipients, html_body):
-    msg = Message(subject, recipients=recipients)
-    msg.html = html_body
-    thr = Thread(target=send_async_email, args=[msg])
-    thr.start()
+# def send_email(subject, recipients, html_body):
+#     msg = Message(subject, recipients=recipients)
+#     msg.html = html_body
+#     thr = Thread(target=send_async_email, args=[msg])
+#     thr.start()
 
-def send_password_reset_email(user_email):
-    password_reset_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-
-    password_reset_url = url_for(
-        'reset_with_token',
-        token = password_reset_serializer.dumps(user_email, salt='password-reset-salt'),
-        _external=True)
-
-    html = render_template(
-        'email_password_reset.html',
-        password_reset_url = password_reset_url)
-
-    send_email('Password Reset Requested', user_email, html)
+# def send_password_reset_email(user_email):
+#     password_reset_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+#
+#     password_reset_url = url_for(
+#         'reset_with_token',
+#         token = password_reset_serializer.dumps(user_email, salt='password-reset-salt'),
+#         _external=True)
+#
+#     html = render_template(
+#         'email_password_reset.html',
+#         password_reset_url = password_reset_url)
+#
+#     send_email('Password Reset Requested', user_email, html)
 
 #######################
 # Search
@@ -481,7 +480,6 @@ class RegisterForm(Form):
     ])
     confirm = PasswordField('Confirm Password')
 
-
 class LogonForm(Form):
     username = StringField('Username', [validators.DataRequired(), validators.Length(min=4, max=25)])
     password = PasswordField('Password', [validators.DataRequired(), validators.Length(min=4, max=25)])
@@ -489,7 +487,6 @@ class LogonForm(Form):
 @app.route('/show')
 def showdata():
     data = mongo.db.Register.find_one({"Username":"Theo.kartel"})
-
     return dumps(data['Username'] + ':' + data['Password'])
 
 # User Register
@@ -553,7 +550,7 @@ def login():
 
         # Compare Passwords
         if sha256_crypt.verify(str(password_candidate), hashed_pw['Password']):
-            #passed
+            # passed
             session['logged_in'] = True
             session['username'] = username
 
@@ -723,8 +720,6 @@ def forgot_password():
             flash('Username is required')
 
         # Generate Random Pass and Set it to User object
-        #pw_hash = bcrypt.generate_password_hash(generated_password).decode('utf-8')
-
         generated_password = gen_reset_password()
         hashed_pw = sha256_crypt.hash(generated_password)
         # update password
@@ -796,7 +791,7 @@ def delete_account(id):
     return redirect(url_for('dashboard'))
 
 ###########################################################
-# 	API SECTION
+# 	                  API SECTION
 ###########################################################
 
 class Register(Resource):
@@ -810,7 +805,7 @@ class Register(Resource):
         phone = postedData["fromPhone"]
         username = postedData["username"]
         password = postedData["password"]
-        network = getNetworkName(phone) # postedData["network"]
+        network = getNetworkName(phone)
 
         if UserExist(phone):
             return jsonify(generateReturnDictionary(301, "Invalid Username/Phone", "FAILURE"))
@@ -850,7 +845,6 @@ class TopUp(Resource):
         password = postedData["password"]
         money = postedData["amount"]
         phone = postedData["fromPhone"]
-        # network = postedData["network"]
         network = getNetworkName(phone)
 
         retJson, error = verifyCredentials(phone, password)
@@ -916,10 +910,12 @@ class TransferMoney(Resource):
 
         fees = transactionFee(money)
         money_after = round(money - fees, 2)
-
-        updateAccount("0240000000", round(float(bank_cash + fees), 2))  # add fees to bank
-        updateAccount(toPhone, round(float(cash_to + money_after), 2)) # add to receiving account
-        updateAccount(fromPhone, round(float(cash_from - money_after), 2)) # deduct money from sending account
+        try:
+            updateAccount("0240000000", round(float(bank_cash + fees), 2))  # add fees to bank
+            updateAccount(toPhone, round(float(cash_to + money_after), 2)) # add to receiving account
+            updateAccount(fromPhone, round(float(cash_from - money_after), 2)) # deduct money from sending account
+        except ValueError as err:
+            print("Update to DB was not successful : {}" + err)
 
         # save to transfer collection
         mongo.db.Transfer.insert_one({
@@ -998,6 +994,12 @@ class WithdrawMoney(Resource):
 # TODO : add interest to loan
 #####################################
 
+# def getMonthlyPayment(loanAmount, monthlyInterateRate, numberOfYears):
+#     import math
+#     monthlyPayment = loanAmount * monthlyInterateRate/(1.0 - math.pow(1.0 + monthlyInterateRate,-(numberOfYears * 12)))
+#     return monthlyPayment
+
+
 # TAKE LOAN
 class TakeLoan(Resource):
     def post(self):
@@ -1069,7 +1071,6 @@ class PayLoan(Resource):
             "DateTime": date_time()
         })
         return jsonify(generateReturnDictionary(200, "Loan Amount Paid Successfully","SUCCESS"))
-
 
 
 # End Points

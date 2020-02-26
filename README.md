@@ -18,7 +18,7 @@ Simple Mobile Money application with authentication and CRUD functionality. Cont
 To use this template, your computer needs:
 
 - [Python 3](https://python.org)
-- Python Flask micro-framework
+- Python Flask Micro-framework
 - [Pip Package Manager](https://pypi.python.org/pypi)
 - Docker
 - MongoDB =====> create an account here : https://cloud.mongodb.com
@@ -69,12 +69,11 @@ python app.py
  - http://35.236.211.103/pay
  - http://35.236.211.103/topup
  - http://35.236.211.103/withdraw
- - http://35.236.211.103/pay
- - http://35.236.211.103/signup
- - http://35.236.211.103/login
  - http://35.236.211.103/transfer
  - http://35.236.211.103/balance
  - http://35.236.211.103/loan
+ - http://35.236.211.103/signup
+ - http://35.236.211.103/login
 
 
 # Withdraw POST request
@@ -138,12 +137,13 @@ print(response.text)
 
 # JAVA
 ```
+public final String BASE_URL = "http://35.236.211.103:80/balance"
 OkHttpClient client = new OkHttpClient();
 
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\n   \"username\": \"freeworldboss\",\n   \"password\": \"cq#4&Ds6~K+0iwU_\",\n   \"firstname\":\"THEOPHILUS\",\n   \"lastname\":\"SIAMEH\",\n   \"fromPhone\":\"0243559227\",\n   \"toPhone\":\"0205592278\",\n   \"email\":\"theodondre@gmail.com\",\n   \"amount\": 8749.31,\n   \"network\": \"MTN\",\n   \"fromNetwork\":\"MTN\",\n   \"toNetwork\":\"VODAFONE\"\n}");
 Request request = new Request.Builder()
-  .url("http://35.236.211.103:80/balance")
+  .url(BASE_URL)
   .post(body)
   .addHeader("Content-Type", "application/json")
   .addHeader("User-Agent", "PostmanRuntime/7.18.0")
