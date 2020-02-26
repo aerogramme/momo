@@ -94,7 +94,6 @@ python app.py
   -H 'Content-Length: 233' \
   -H 'Content-Type: application/json' \
   -H 'Host: 35.236.211.103:80' \
-  -H 'Postman-Token: 5fa14877-38f5-4ef7-8216-f107c4ad5e8e,a78417d7-57d1-447a-8287-dcc5e813173f' \
   -H 'User-Agent: PostmanRuntime/7.18.0' \
   -H 'cache-control: no-cache' \
   -d '{
@@ -125,7 +124,6 @@ headers = {
     'User-Agent': "PostmanRuntime/7.18.0",
     'Accept': "*/*",
     'Cache-Control': "no-cache",
-    'Postman-Token': "5fa14877-38f5-4ef7-8216-f107c4ad5e8e,cdfe35a2-c7f3-407f-8e4a-c3521e75b9e3",
     'Host': "35.236.211.103:80",
     'Accept-Encoding': "gzip, deflate",
     'Content-Length': "233",
@@ -151,7 +149,6 @@ Request request = new Request.Builder()
   .addHeader("User-Agent", "PostmanRuntime/7.18.0")
   .addHeader("Accept", "*/*")
   .addHeader("Cache-Control", "no-cache")
-  .addHeader("Postman-Token", "5fa14877-38f5-4ef7-8216-f107c4ad5e8e,469c96af-a20a-4814-b39c-32f957bffce2")
   .addHeader("Host", "35.236.211.103:80")
   .addHeader("Accept-Encoding", "gzip, deflate")
   .addHeader("Content-Length", "233")
@@ -175,7 +172,6 @@ $request->setHeaders(array(
   'Content-Length' => '233',
   'Accept-Encoding' => 'gzip, deflate',
   'Host' => '35.236.211.103:80',
-  'Postman-Token' => '5fa14877-38f5-4ef7-8216-f107c4ad5e8e,ad50d6e9-550f-4439-8a78-20bdccd39d1c',
   'Cache-Control' => 'no-cache',
   'Accept' => '*/*',
   'User-Agent' => 'PostmanRuntime/7.18.0',
@@ -207,7 +203,7 @@ try {
 
 # LICENSE
 ```
-	Copyright (C) 2020 aerograme.io
+	Copyright (C) 2020 https://aerograme.io
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -228,5 +224,5 @@ try {
 ```
 # CONTRIBUTORS
 ```
- 	- Theophilus Siameh
+ 	- THEOPHILUS SIAMEH | @tsiameh
  ```
