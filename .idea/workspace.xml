@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3530751b-772b-47ec-8b4b-bb77ed37aca6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/basic-auth/basic-auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic-auth/basicAuthDemo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic-auth/multi_auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic-auth/token_auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic-auth/digest_auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/edit_balance.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/edit_balance.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
