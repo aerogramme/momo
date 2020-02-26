@@ -1,106 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3530751b-772b-47ec-8b4b-bb77ed37aca6" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="3530751b-772b-47ec-8b4b-bb77ed37aca6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MoMoApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoMoApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/R_User_Library.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/R_User_Library.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/listusers.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listusers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/transfer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/transfer.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="352" column="30" lean-forward="true" selection-start-line="352" selection-start-column="30" selection-end-line="352" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#79#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
       <list>
-        <option value="$PROJECT_DIR$/app.py" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="3" />
-    <option name="y" value="23" />
-    <option name="width" value="1666" />
-    <option name="height" value="982" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="Course" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="MoMoApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MoMoApp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MoMoApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MoMoApp" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MoMoApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MoMoApp" type="462c0819:PsiDirectoryNode" />
-              <item name="legal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MoMoApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MoMoApp" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MoMoApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MoMoApp" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
+  <component name="ProjectId" id="1YEjWHRqJERFXOXDk5FCKBbOQpy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576603652613" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3288889" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.app (1)">
+    <configuration name="Person" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MoMoApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/web" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/web/Person.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -122,10 +87,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="app (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MoMoApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="app" type="PythonConfigurationType" factoryName="Python">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -140,6 +129,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="runPerson" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MoMoApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/web" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/web/runPerson.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.app (1)" />
+        <item itemvalue="Python.runPerson" />
+        <item itemvalue="Python.Person" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SbtLocalSettings">
     <option name="projectSyncType">
@@ -163,65 +180,43 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="3" y="23" width="1666" height="982" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="aws.explorer" side_tool="true" />
-      <window_info id="DB Browser" />
-      <window_info id="UI Designer" />
-      <window_info id="Project Explorer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Capture Tool" />
-      <window_info id="Job Explorer" />
-      <window_info id="Learn" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22413793" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="DB Execution Console" />
-      <window_info anchor="bottom" id="Amazon EC2" weight="0.45208567" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Graph Database Console" />
-      <window_info anchor="bottom" id="Educational.CheckDetails" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Docker" />
-      <window_info anchor="bottom" id="Console" />
-      <window_info anchor="bottom" id="Veracode Greenlight" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.40586245" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="R Packages" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Graph Database" />
-      <window_info anchor="right" id="FAQ Robot" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="R Graphics" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="352" column="30" lean-forward="true" selection-start-line="352" selection-start-column="30" selection-end-line="352" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="2412" y="455" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582647461088">
+      <screen x="1680" y="23" width="2560" height="1417" />
+    </state>
+    <state x="2412" y="455" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582647461088" />
+    <state width="1659" height="293" key="GridCell.Tab.0.bottom" timestamp="1582689312194">
+      <screen x="0" y="23" width="1680" height="1002" />
+    </state>
+    <state width="1659" height="293" key="GridCell.Tab.0.bottom/0.23.1680.1002@0.23.1680.1002" timestamp="1582689312194" />
+    <state width="2045" height="336" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582648962641" />
+    <state width="1659" height="293" key="GridCell.Tab.0.center" timestamp="1582689312192">
+      <screen x="0" y="23" width="1680" height="1002" />
+    </state>
+    <state width="1659" height="293" key="GridCell.Tab.0.center/0.23.1680.1002@0.23.1680.1002" timestamp="1582689312192" />
+    <state width="2045" height="336" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582648962640" />
+    <state width="1659" height="293" key="GridCell.Tab.0.left" timestamp="1582689312189">
+      <screen x="0" y="23" width="1680" height="1002" />
+    </state>
+    <state width="1659" height="293" key="GridCell.Tab.0.left/0.23.1680.1002@0.23.1680.1002" timestamp="1582689312189" />
+    <state width="2045" height="336" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582648962639" />
+    <state width="1659" height="293" key="GridCell.Tab.0.right" timestamp="1582689312193">
+      <screen x="0" y="23" width="1680" height="1002" />
+    </state>
+    <state width="1659" height="293" key="GridCell.Tab.0.right/0.23.1680.1002@0.23.1680.1002" timestamp="1582689312193" />
+    <state width="2045" height="336" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582648962640" />
+    <state x="319" y="143" key="SettingsEditor" timestamp="1582516567660">
+      <screen x="0" y="23" width="1680" height="1002" />
+    </state>
+    <state x="319" y="143" key="SettingsEditor/0.23.1680.1002@0.23.1680.1002" timestamp="1582516567660" />
+    <state width="840" height="501" key="XDebugger.FullValuePopup" timestamp="1582679176157">
+      <screen x="0" y="23" width="1680" height="1002" />
+    </state>
+    <state width="840" height="501" key="XDebugger.FullValuePopup/0.23.1680.1002@0.23.1680.1002" timestamp="1582679176157" />
+    <state x="2635" y="326" key="refactoring.ChangeSignatureDialog" timestamp="1582668009364">
+      <screen x="1680" y="23" width="2560" height="1417" />
+    </state>
+    <state x="2635" y="326" key="refactoring.ChangeSignatureDialog/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582668009364" />
   </component>
   <component name="masterDetails">
     <states>

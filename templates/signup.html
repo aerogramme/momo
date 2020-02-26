@@ -7,7 +7,8 @@
 
   <form method="POST" action="">
     <div class="form-group col-xs-3 col-lg-4 col-lg-offset-4">
-      {{render_field(form.name, placeholder="Enter Full Name",class_="form-control")}}
+      {{render_field(form.firstname, placeholder="Enter First Name",class_="form-control")}}
+      {{render_field(form.lastname, placeholder="Enter Last Name",class_="form-control")}}
       {{render_field(form.email, placeholder="Enter Email", class_="form-control")}}
       {{render_field(form.phone, placeholder="Enter Phone", class_="form-control")}}
       {{render_field(form.username, placeholder="Enter Username", class_="form-control")}}

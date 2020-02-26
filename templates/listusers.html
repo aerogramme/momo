@@ -18,20 +18,29 @@
     <tr>
       <th>#</th>
       <th>_id</th>
-      <th>Name</th>
+      <th>First Name</th>
+        <th>Last Name</th>
       <th>Email</th>
       <th>Phone</th>
       <th>Username</th>
+        <th>DateTimeCreated</th>
+        <th>Network</th>
+        <th>apiKeys</th>
+
     </tr>
     <tbody>
       {% for user in listUser %}
       <tr>
          <td>{{ loop.index + pagination.skip }}</td>
          <td>{{ user._id }}</td>
-         <td>{{ user.Name }}</td>
+         <td>{{ user.FirstName }}</td>
+          <td>{{ user.LastName }}</td>
          <td>{{ user.Email }}</td>
          <td>{{ user.Phone }}</td>
          <td>{{ user.Username }}</td>
+          <td>{{ user.DateTimeCreated }}</td>
+          <td>{{ user.Network }}</td>
+          <td>{{ user.apiKeys }}</td>
          <td><a href="#" class="btn btn-default pull-right">Edit</a></td>
          <td>
            <form action="#" method="post">

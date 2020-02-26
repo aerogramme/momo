@@ -1,30 +1,26 @@
-
 #!/usr/bin/python
 
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from flask_pymongo import PyMongo
-from functools import wraps
-from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
-from flask import Flask, jsonify, request
-from flask_restful import Api, Resource
-#from pymongo import MongoClient
-from passlib.hash import sha256_crypt
-from itsdangerous import URLSafeTimedSerializer
-import bcrypt
-from datetime import datetime
-import json
+import os
+import random
 import uuid
+from binascii import hexlify
+from datetime import datetime
+from functools import wraps
+from threading import Thread
+
+from bson.json_util import dumps
+from bson.objectid import ObjectId
+from flask import Flask, jsonify, request
+from flask import render_template, flash, redirect, url_for, session
 from flask_mail import Mail
 from flask_mail import Message
-from threading import Thread
-from bson.json_util import dumps
-
-#import sendmail
-import dns # required for connecting with SRV
-from bson.objectid import ObjectId
-from flask_paginate import Pagination, get_page_parameter,get_page_args
-#from flask_dance.contrib.google import make_google_blueprint, google
-
+from flask_paginate import Pagination, get_page_args
+from flask_pymongo import PyMongo
+from flask_restful import Api, Resource
+from itsdangerous import URLSafeTimedSerializer
+# from pymongo import MongoClient
+from passlib.hash import sha256_crypt
+from wtforms import Form, StringField, PasswordField, validators
 
 #############################################
 # Author: Theophilus Siameh
@@ -50,26 +46,18 @@ mongo = PyMongo(app)
 api = Api(app)
 mail = Mail(app)
 
-
+#######################################################################################################################
 #client = MongoClient("mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority")
 #mongo = client.MobileMoneyDB
 #users = db["Users"]
 
-# import pymongo
-# from bson.json_util import dumps
-# import json
-#
 # mongo = pymongo.MongoClient('mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority', maxPoolSize=50, connect=False)
-#
 # db = pymongo.database.Database(mongo, 'mydatabase')
 # col = pymongo.collection.Collection(db, 'mycollection')
-#
 # col_results = json.loads(dumps(col.find().limit(5).sort("time", -1)))
-
+#######################################################################################################################
 
 users = list(range(100))
-
-#api = Api(app)
 
 #Check if user logged in
 def is_logged_in(f):
@@ -91,7 +79,7 @@ def logout():
     return redirect(url_for('login'))
 
 def date_time():
-    # current date and time
+    '''current date and time'''
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def getPrettyTime():
@@ -101,10 +89,118 @@ def getPrettyTime():
     return prettytime
 
 def transaction_id():
+    '''Generate Transaction ID'''
     return str(uuid.uuid4())
 
+def getNetworkName(phoneNumber):
+    '''get network name given phone number'''
+    switcher = {"024":"MTN",
+                "054":"MTN",
+                "055":"MTN",
+                "059":"MTN",
+                "026":"AIRTEL",
+                "056":"AIRTEL",
+                "027":"TIGO",
+                "057":"TIGO",
+                "020":"VODAFONE",
+                "030":"VODAFONE",
+                "050":"VODAFONE"
+                }
+    return switcher.get(phoneNumber[0:3],"Unsupported phone number for network detected")
+
+def generateApiKeys(passlen = 16):
+    ''' Generate API Keys '''
+    return hexlify(os.urandom(passlen)).decode("utf-8")
+
+def gen_reset_password(passlen = 16):
+    '''generate reset password'''
+    s = "!_*&abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ#@(~+"
+    generated_password = "".join(random.sample(s,passlen))
+    return str(generated_password)
+
 def get_users(offset=0, per_page=3):
-    return users[offset: offset + per_page] #mongo.db.Register.find({}).skip(offset).limit(offset + per_page)
+    # mongo.db.Register.find({}).skip(offset).limit(offset + per_page)
+    return users[offset: offset + per_page]
+
+
+###########################################################
+# 	FUNC SECTION
+###########################################################
+
+def UserExist(phone):
+    '''Check if Phone Number Exist in DB'''
+    userAccount = mongo.db.Register
+    if userAccount.count_documents({"Phone":phone}) == 0:
+        return False
+    else:
+        return True
+
+
+def verifyPw(phone, password):
+    if not UserExist(phone):
+        return False
+
+    hashed_pw = mongo.db.Register.find_one({"Phone":phone})["Password"]
+
+    if sha256_crypt.verify(password, hashed_pw):
+        return True
+    else:
+        return False
+
+def cashWithUser(phone):
+    cash = mongo.db.Register.find_one({
+        "Phone":phone
+    })["Balance"]
+    return cash
+
+def debtWithUser(phone):
+    debt = mongo.db.Register.find_one({
+        "Phone":phone
+    })["Debt"]
+    return debt
+
+
+def generateReturnDictionary(code, msg, status):
+    retJson = {
+        "code":code,
+        "msg": msg,
+        "status": status
+    }
+    return retJson
+
+def verifyCredentials(phone, password):
+    if not UserExist(phone):
+        return generateReturnDictionary(301, "Invalid Username/Phone", "FAILURE"), True
+
+    correct_pw = verifyPw(phone, password)
+
+    if not correct_pw:
+        return generateReturnDictionary(302, "Incorrect Password", "FAILURE"), True
+
+    return None, False
+
+def updateAccount(phone, balance):
+    mongo.db.Register.update_one({
+        "Phone": phone
+    },{
+        "$set":{
+            "Balance": round(float(balance),2)
+        }
+    })
+
+def updateDebt(phone, balance):
+    mongo.db.Register.update_one({
+        "Phone": phone
+    },{
+        "$set":{
+            "Debt": round(float(balance),2)
+        }
+    })
+
+def transactionFee(amount):
+    ''' 1% Transaction Fees '''
+    return amount * 0.01
+
 
 # Index
 @app.route('/')
@@ -118,15 +214,13 @@ def index():
 # send email
 ############################################
 def send_mail(subject,body,recipients):
-	try:
-		msg = Message(subject,
-		  			sender="theodondre@gmail.com",
-		  			recipients= [recipients])
-		msg.body = body
-		mail.send(msg)
-		return 'Mail sent!'
-	except Exception as e:
-		return(str(e))
+    try:
+        msg = Message(subject,sender="theodondre@gmail.com",recipients= [recipients])
+        msg.body = body
+        mail.send(msg)
+        return 'Mail sent!'
+    except Exception as e:
+        return(str(e))
 
 
 def send_email(subject, recipients, html_body):
@@ -376,7 +470,8 @@ def dashboard():
 
 # Register Form Class
 class RegisterForm(Form):
-    name = StringField('Name', [validators.DataRequired(), validators.Length(min=1, max=50)])
+    firstname = StringField('First Name', [validators.DataRequired(), validators.Length(min=1, max=50)])
+    lastname = StringField('Last Name', [validators.DataRequired(), validators.Length(min=1, max=50)])
     username = StringField('Username', [validators.DataRequired(), validators.Length(min=4, max=25)])
     email = StringField('Email', [validators.DataRequired(), validators.Length(min=6, max=50)])
     phone = StringField('Phone', [validators.DataRequired(), validators.Length(min=10, max=50)])
@@ -391,16 +486,6 @@ class LogonForm(Form):
     username = StringField('Username', [validators.DataRequired(), validators.Length(min=4, max=25)])
     password = PasswordField('Password', [validators.DataRequired(), validators.Length(min=4, max=25)])
 
-
-
-def UserExist(username):
-    userAccount = mongo.db.Register
-    if userAccount.count_documents({"Username":username}) == 0:
-        return False
-    else:
-        return True
-
-
 @app.route('/show')
 def showdata():
     data = mongo.db.Register.find_one({"Username":"Theo.kartel"})
@@ -410,43 +495,55 @@ def showdata():
 # User Register
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    '''User Registeration'''
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
-        name = form.name.data
+        # fields
+        firstname = form.firstname.data
+        lastname = form.lastname.data
         email = form.email.data
         phone = form.phone.data
         username = form.username.data
         password = form.password.data
+        network = getNetworkName(phone)
 
-        # request.form['password']
+        # check if phone number exist
+        if UserExist(phone):
+            return jsonify(generateReturnDictionary(301,'Invalid Username/Phone', "FAILURE"))
 
         reg = mongo.db.Register
-        existing_user = reg.find_one({"Username": username})
+        existing_user = reg.find_one({"Phone": phone})
         if existing_user is None:
+            # hash password
             hashed_pw = sha256_crypt.hash(str(password))
             # insert into db
             reg.insert_one({
-                "Name": name,
+                "FirstName": firstname,
+                "LastName": lastname,
                 "Email": email,
                 "Phone": phone,
+                "Network": network,
                 "Username": username,
                 "Password": hashed_pw,
-                "Balance":float(0.0),
-                "Debt":float(0.0),
-                "DateTimeCreated":date_time()
+                "Balance": float(0.0),
+                "Debt": float(0.0),
+                "DateTimeCreated": date_time(),
+                "apiKeys": generateApiKeys()
                 })
 
-        flash('You are now registered and can log in', 'success')
+        flash('You successfully signed up for the mobile money wallet, you can now log-in', 'success')
         return redirect(url_for('login'))
-    return render_template('signup.html', form = form)
+    return render_template('signup.html', form=form)
 
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    '''User login'''
     form = LogonForm(request.form)
     if request.method == 'POST':
         # Get Form Fields
+        # phone = form.phone.data # request.form['phone']
         username = form.username.data # request.form['username']
         password_candidate = form.password.data # request.form['password']
 
@@ -520,7 +617,7 @@ def change_password():
             # Query for user from database and check password
             elif len(errors) == 0:
                 #if verifyPw(username, current_password):
-                hashed_pw = sha256_crypt.hash(password)
+                hashed_pw = sha256_crypt.hash(new_password)
                     # update password
                 mongo.db.Register.update_one({
                     "Username": username
@@ -613,6 +710,7 @@ def reset_with_token(token):
 
 @app.route("/forgot_password/", methods=['GET', 'POST'])
 def forgot_password():
+    '''Forgot Password'''
     if request.method=='GET': #Send the forgot password form
         return render_template('forgot_password.html')
 
@@ -624,14 +722,11 @@ def forgot_password():
         if username is None or username=='':
             flash('Username is required')
 
-        #Generate Random Pass and Set it to User object
-        import random
-        s = "abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        passlen = 16
-        generated_password =  "".join(random.sample(s,passlen))
-        #print(generated_password)
+        # Generate Random Pass and Set it to User object
         #pw_hash = bcrypt.generate_password_hash(generated_password).decode('utf-8')
-        hashed_pw = sha256_crypt.hash(str(generated_password))
+
+        generated_password = gen_reset_password()
+        hashed_pw = sha256_crypt.hash(generated_password)
         # update password
         mongo.db.Register.update_one({
             "Username": username
@@ -641,8 +736,8 @@ def forgot_password():
                 }
             })
 
-        #Send Reset Mail
-        #message = sendmail.SendPasswordResetMail(user, generated_password)
+        # Send Reset Mail
+        # message = sendmail.SendPasswordResetMail(user, generated_password)
         send_mail("Password Reset","Password Reset has been sent to your Email. \nHere is your new password : {0}".format(generated_password),emailFound)
         flash('Password Reset Link has been sent to your Email.', 'success')
         return redirect(url_for('login'))
@@ -680,8 +775,7 @@ def edit_balance(id):
             }
         },upsert=True)
 
-        flash('Balance Updated', 'success')
-
+        flash('Balance/Debt Updated', 'success')
         return redirect(url_for('dashboard'))
 
     return render_template('edit_balance.html', form = form)
@@ -699,263 +793,195 @@ def delete_account(id):
         mongo.db.Register.delete_one({"_id": ObjectId(account['_id'])})
 
     flash('Account Deleted', 'success')
-
     return redirect(url_for('dashboard'))
 
+###########################################################
+# 	API SECTION
+###########################################################
 
 class Register(Resource):
     def post(self):
-        #Step 1 is to get posted data by the user
+        # Step 1 is to get posted data by the user
         postedData = request.get_json()
-        #Get the data
-        name  = postedData["name"]
+        # Get the data
+        firstname = postedData["firstname"]
+        lastname = postedData["lastname"]
         email = postedData["email"]
         phone = postedData["fromPhone"]
-        username  = postedData["username"]
-        password  = postedData["password"]
-        network   = postedData["network"]
-        #hashed_pw = sha256_crypt.encrypt((str(password))
+        username = postedData["username"]
+        password = postedData["password"]
+        network = getNetworkName(phone) # postedData["network"]
 
-        if UserExist(username):
-            retJson = {
-                'status':301,
-                'msg': 'Invalid Username'
-
-            }
-            return jsonify(retJson)
+        if UserExist(phone):
+            return jsonify(generateReturnDictionary(301, "Invalid Username/Phone", "FAILURE"))
 
         hashed_pw = sha256_crypt.hash(password)
+        apiKey = generateApiKeys()
 
-        #Store username,pw, phone, network into the database
+        # Store username,pw, phone, network into the database
         mongo.db.Register.insert_one({
-            "Name": name,
-            "Email": email,
-            "Phone": phone,
-            "Username": username,
-            "Password": hashed_pw,
-            "Network": network,
-            "Balance":float(0.0),
-            "Debt":float(0.0)
-        })
+                "FirstName":firstname,
+                "LastName":lastname,
+                "Email":email,
+                "Phone":phone,
+                "Network":network,
+                "Username":username,
+                "Password":hashed_pw,
+                "Balance":float(0.0),
+                "Debt":float(0.0),
+                "DateTimeCreated":date_time(),
+                "apiKeys":apiKey
+                })
 
         retJson = {
-            "status": 200,
-            "msg": "You successfully signed up for the mobile money wallet"
+            "code": 200,
+            "msg": "You successfully signed up for the mobile money wallet",
+            "apiKey": apiKey,
+            "status": "SUCCESS"
         }
         return jsonify(retJson)
 
-# ##########################################################
-# 	API SECTION
-# ##########################################################
-
-def verifyPw(username, password):
-    if not UserExist(username):
-        return False
-
-    hashed_pw = mongo.db.Register.find_one({"Username":username})["Password"]
-
-    if sha256_crypt.verify(password, hashed_pw):
-        return True
-    else:
-        return False
-
-def cashWithUser(username):
-    cash = mongo.db.Register.find_one({
-        "Username":username
-    })["Balance"]
-    return cash
-
-def debtWithUser(username):
-    debt = mongo.db.Register.find_one({
-        "Username":username
-    })["Debt"]
-    return debt
-
-
-def generateReturnDictionary(status, msg):
-    retJson = {
-        "status":status,
-        "msg": msg
-    }
-    return retJson
-
-def verifyCredentials(username, password):
-    if not UserExist(username):
-        return generateReturnDictionary(301, "Invalid Username"), True
-
-    correct_pw = verifyPw(username, password)
-
-    if not correct_pw:
-        return generateReturnDictionary(302, "Incorrect Password"), True
-
-    return None, False
-
-def updateAccount(username, balance):
-    mongo.db.Register.update_one({
-        "Username": username
-    },{
-        "$set":{
-            "Balance": round(float(balance),2)
-        }
-    })
-
-def updateDebt(username, balance):
-    mongo.db.Register.update_one({
-        "Username": username
-    },{
-        "$set":{
-            "Debt": round(float(balance),2)
-        }
-    })
-
-def transactionFee(amount):
-    ''' 1% Transaction Fees'''
-    return amount * 0.01
-
+# TOPUP MONEY
 class TopUp(Resource):
     def post(self):
         # get json data
         postedData = request.get_json()
-
         username = postedData["username"]
         password = postedData["password"]
-        money    = postedData["amount"]
-        network  = postedData["network"]
-        phone    = postedData["fromPhone"]
+        money = postedData["amount"]
+        phone = postedData["fromPhone"]
+        # network = postedData["network"]
+        network = getNetworkName(phone)
 
-        retJson, error = verifyCredentials(username, password)
+        retJson, error = verifyCredentials(phone, password)
         if error:
             return jsonify(retJson)
 
-        if money <= 0:
-            return jsonify(generateReturnDictionary(304, "The money amount entered must be greater than 0"))
+        if money <= float(0):
+            return jsonify(generateReturnDictionary(304, "The money amount entered must be greater than 0", "FAILURE"))
 
-        cash = cashWithUser(username)
-
+        cash = cashWithUser(phone)
+        # Transaction fee
         fees = transactionFee(money)
-        money = money - fees # Transaction fee
+        money = round(money - fees, 2)
 
         # Add transaction fee to bank account
-        bank_cash = cashWithUser("BANK")
-        updateAccount("BANK", round(float(bank_cash + fees),2))
-        # Add remaining to user
-        updateAccount(username, round(float(cash + money),2))
+        bank_cash = cashWithUser("0240000000")
+        updateAccount("0240000000", round(float(bank_cash + fees), 2))
+        # Add remaining money to user account
+        updateAccount(phone, round(float(cash + money),2))
 
         # Insert data into TopUp Collection
         mongo.db.TopUps.insert_one({
             "Username": username,
-            "Amount": round(float(money),2),
+            "Amount": round(float(money), 2),
             "Network": network,
             "Phone": phone,
-            "TransactionID":transaction_id(),
+            "TransactionID": transaction_id(),
             "DateTime": date_time()
         })
+        return jsonify(generateReturnDictionary(200, "Amount Added Successfully to account", "SUCCESS"))
 
-        return jsonify(generateReturnDictionary(200, "Amount Added Successfully to account"))
-
+# TRANSFER MONEY
 class TransferMoney(Resource):
     def post(self):
+        # get json data
         postedData = request.get_json()
-
         username = postedData["username"]
         password = postedData["password"]
-        toAccount= postedData["to"]
-        money    = postedData["amount"]
-        network  = postedData["network"]
+        money = postedData["amount"]
         fromPhone = postedData["fromPhone"]
-        toPhone  = postedData["toPhone"]
+        toPhone = postedData["toPhone"]
+        # extract network name
+        fromNetwork = getNetworkName(fromPhone)
+        toNetwork = getNetworkName(toPhone)
 
-        retJson, error = verifyCredentials(username, password)
+        # verify sender credentials
+        retJson, error = verifyCredentials(fromPhone, password)
         if error:
             return jsonify(retJson)
 
-        #cash = cashWithUser(username)
-        cash_from = cashWithUser(username)
-        cash_to   = cashWithUser(toAccount)
-        bank_cash = cashWithUser("BANK")
+        # cash = cashWithUser(username)
+        cash_from = cashWithUser(fromPhone)
+        cash_to  = cashWithUser(toPhone)
+        bank_cash = cashWithUser("0240000000")
 
-        if cash_from <= 0:
-            return jsonify(generateReturnDictionary(303, "You are out of money, please Add Cash or take a loan"))
+        if cash_from <= float(0):
+            return jsonify(generateReturnDictionary(303, "You are out of money, Please Topup some Cash or take a loan", "FAILURE"))
+        elif money <= float(1):
+            return jsonify(generateReturnDictionary(304, "The amount entered must be greater than GHS 1.00", "FAILURE"))
 
-        elif money <= 2:
-            return jsonify(generateReturnDictionary(304, "The amount entered must be greater than 2.00 GHS"))
-
-        if not UserExist(toAccount):
-            return jsonify(generateReturnDictionary(301, "Received username is invalid"))
+        if not UserExist(toPhone):
+            return jsonify(generateReturnDictionary(301, "Received username/phone is invalid", "FAILURE"))
 
         fees = transactionFee(money)
-        money_after = money - fees
+        money_after = round(money - fees, 2)
 
-        updateAccount("BANK", round(float(bank_cash + fees),2))  # add fees to bank
-        updateAccount(toAccount, round(float(cash_to + money_after),2)) # add to receiving account
-        updateAccount(username, round(float(cash_from - money_after),2)) # deduct money from sending account
+        updateAccount("0240000000", round(float(bank_cash + fees), 2))  # add fees to bank
+        updateAccount(toPhone, round(float(cash_to + money_after), 2)) # add to receiving account
+        updateAccount(fromPhone, round(float(cash_from - money_after), 2)) # deduct money from sending account
 
         # save to transfer collection
         mongo.db.Transfer.insert_one({
             "Username": username,
             "AmountBeforeFees": round(float(money),2),
             "AmountAfterFees": round(float(money_after),2),
-            "ToAccount": toAccount,
-            "Network": network,
             "FromPhone": fromPhone,
             "ToPhone": toPhone,
-            "TransactionID":transaction_id(),
+            "ToNetwork": toNetwork,
+            "FromNetwork": fromNetwork,
+            "TransactionID": transaction_id(),
             "DateTime": date_time()
         })
+        return jsonify(generateReturnDictionary(200, "Amount added successfully to account","SUCCESS"))
 
-        # retJson = {
-        #     "status":200,
-        #     "msg": "Amount added successfully to account"
-        # }
-        return jsonify(generateReturnDictionary(200, "Amount added successfully to account"))
-
+# CHECK BALANCE
 class CheckBalance(Resource):
     def post(self):
-        postedData = request.get_json()
 
+        postedData = request.get_json()
+        phone  = postedData["fromPhone"]
         username = postedData["username"]
         password = postedData["password"]
 
-        retJson, error = verifyCredentials(username, password)
+        retJson, error = verifyCredentials(phone, password)
         if error:
             return jsonify(retJson)
 
         retJson = mongo.db.Register.find({
-            "Username": username
+            "Phone": phone
         },{
             "Password": 0, #projection
             "_id":0
         })[0]
-
         return jsonify(retJson)
 
-
+# WITHDRAW MONEY
 class WithdrawMoney(Resource):
     def post(self):
-        postedData = request.get_json()
 
+        postedData = request.get_json()
         username = postedData["username"]
         password = postedData["password"]
-        money    = postedData["amount"]
-        network  = postedData["network"]
-        phone    = postedData["fromPhone"]
+        money = postedData["amount"]
+        phone = postedData["fromPhone"]
+        network = getNetworkName(phone)
 
-        retJson, error = verifyCredentials(username, password)
+        retJson, error = verifyCredentials(phone, password)
         if error:
             return jsonify(retJson)
 
         # Current Balance
-        balance = cashWithUser(username)
+        balance = cashWithUser(phone)
 
         if balance < money:
-            return jsonify(generateReturnDictionary(303, "Not Enough Cash in your account"))
-        elif money < 0:
-            return jsonify(generateReturnDictionary(303, "You cannot withdraw negative ammount"))
+            return jsonify(generateReturnDictionary(303, "Not Enough Cash in your wallet", "FAILURE"))
+        elif money < float(0):
+            return jsonify(generateReturnDictionary(303, "You cannot withdraw negative amount", "FAILURE"))
+        elif balance < float(0):
+            return jsonify(generateReturnDictionary(303, "Your balance is in negative, please TopUp with some cash", "FAILURE"))
 
-        elif balance < 0:
-            return jsonify(generateReturnDictionary(303, "Your balance is in negative, please TopUp"))
-
-        updateAccount(username, balance-money)
+        updateAccount(phone, balance-money)
 
         # Insert data into Withdrawal Collection
         mongo.db.Withdrawal.insert_one({
@@ -963,35 +989,37 @@ class WithdrawMoney(Resource):
             "Amount": round(float(money),2),
             "Network": network,
             "Phone": phone,
-            "Transaction_Id":transaction_id(),
+            "Transaction_Id": transaction_id(),
             "DateTime": date_time()
         })
+        return jsonify(generateReturnDictionary(200, "Money Withdrawn from your wallet", "SUCCESS"))
 
-        return jsonify(generateReturnDictionary(200,"{0} Withdrawn from your account {1}".format(money, username)))
+#####################################
+# TODO : add interest to loan
+#####################################
 
-# add interest to loan : TODO
-
+# TAKE LOAN
 class TakeLoan(Resource):
     def post(self):
-        postedData = request.get_json()
 
+        postedData = request.get_json()
         username = postedData["username"]
         password = postedData["password"]
-        money    = postedData["amount"]
-        network  = postedData["network"]
-        phone  = postedData["fromPhone"]
+        money = postedData["amount"]
+        phone = postedData["fromPhone"]
+        network = getNetworkName(phone)
 
-        retJson, error = verifyCredentials(username, password)
+        retJson, error = verifyCredentials(phone, password)
         if error:
             return jsonify(retJson)
 
-        cash = cashWithUser(username)
-        debt = debtWithUser(username)
+        cash = cashWithUser(phone)
+        debt = debtWithUser(phone)
         # update accounts
-        updateAccount(username, round(float(cash + money),2))
-        updateDebt(username, round(float(debt + money),2))
+        updateAccount(phone, round(float(cash + money),2))
+        updateDebt(phone, round(float(debt + money),2))
 
-        # Insert data into takeloan Collection
+        # Insert data into take loan Collection
         mongo.db.Takeloan.insert_one({
             "Username": username,
             "Loan_Amount": round(float(money),2),
@@ -1000,36 +1028,36 @@ class TakeLoan(Resource):
             "TransactionID":transaction_id(),
             "DateTime": date_time()
         })
+        return jsonify(generateReturnDictionary(200, "Loan Amount Added to Your Account Successfully","SUCCESS"))
 
-        return jsonify(generateReturnDictionary(200, "Loan Added to Your Account"))
-
-
+# PAY LOAN
 class PayLoan(Resource):
     def post(self):
-        postedData = request.get_json()
 
+        postedData = request.get_json()
         username = postedData["username"]
         password = postedData["password"]
-        money    = postedData["amount"]
-        network  = postedData["network"]
-        phone    = postedData["fromPhone"]
+        money = postedData["amount"]
+        phone = postedData["fromPhone"]
+        network = getNetworkName(phone)
 
-        retJson, error = verifyCredentials(username, password)
+        retJson, error = verifyCredentials(phone, password)
         if error:
             return jsonify(retJson)
 
-        cash = cashWithUser(username)
-        debt = debtWithUser(username)
+        cash = cashWithUser(phone)
+        debt = debtWithUser(phone)
 
         if cash < money:
-            return jsonify(generateReturnDictionary(303, "Not enough cash in your account"))
+            return jsonify(generateReturnDictionary(303, "Not enough cash in your account", "FAILURE"))
         elif money > debt:
-            return jsonify(generateReturnDictionary(303, "You can't overpay your loan"))
-        elif debt < 0.0:
-            return jsonify(generateReturnDictionary(303, "Your debt is in negative"))
+            return jsonify(generateReturnDictionary(303, "You can't overpay your loan", "FAILURE"))
+        elif debt < float(0):
+            return jsonify(generateReturnDictionary(303, "Your debt is in negative", "FAILURE"))
 
-        updateAccount(username, round(float(cash - money),2))
-        updateDebt(username, round(float(debt - money),2))
+        # update accounts
+        updateAccount(phone, round(float(cash - money), 2))
+        updateDebt(phone, round(float(debt - money), 2))
 
         # Insert data into payloan Collection
         mongo.db.Payloan.insert_one({
@@ -1037,11 +1065,12 @@ class PayLoan(Resource):
             "AmountPaid": round(float(money),2),
             "Network": network,
             "Phone": phone,
-            "TransactionID":transaction_id(),
+            "TransactionID": transaction_id(),
             "DateTime": date_time()
         })
+        return jsonify(generateReturnDictionary(200, "Loan Amount Paid Successfully","SUCCESS"))
 
-        return jsonify(generateReturnDictionary(200, "Loan Paid Successfully"))
+
 
 # End Points
 api.add_resource(Register, '/register')
@@ -1053,4 +1082,5 @@ api.add_resource(TakeLoan, '/loan')
 api.add_resource(PayLoan, '/pay')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=80,debug=True)
+    #app.run(host='0.0.0.0',port=80,debug=True)
+    app.run(debug=True)

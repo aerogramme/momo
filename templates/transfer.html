@@ -23,12 +23,13 @@
       <th>TransactionID</th>
       <th>AmountBeforeFees</th>
       <th>AmountAfterFees</th>
-      <th>ToAccount</th>
+      <!--<th>ToAccount</th>-->
       <th>FromAccount</th>
       <th>FromPhone</th>
       <th>ToPhone</th>
       <th>DateTime</th>
-      <th>Network</th>
+      <th>FromNetwork</th>
+        <th>ToNetwork</th>
     </tr>
     <tbody>
       {% for user in transfersObject %}
@@ -38,12 +39,13 @@
          <td>{{ user.TransactionID }}</td>
          <td>{{ user.AmountBeforeFees }}</td>
          <td>{{ user.AmountAfterFees }}</td>
-         <td>{{ user.ToAccount }}</td>
+        <!-- <td>{{ user.ToAccount }}</td>-->
          <td>{{ user.Username }}</td>
          <td>{{ user.FromPhone }}</td>
          <td>{{ user.ToPhone }}</td>
          <td>{{ user.DateTime }}</td>
-         <td>{{ user.Network }}</td>
+         <td>{{ user.FromNetwork }}</td>
+          <td>{{ user.ToNetwork }}</td>
          <td><a href="#" class="btn btn-default pull-right">Edit</a></td>
          <td>
            <form action="#" method="post">
