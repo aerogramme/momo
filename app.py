@@ -4,36 +4,32 @@
 #############################################
 
 from functools import wraps
+
 from bson.json_util import dumps
 from bson.objectid import ObjectId
-from flask import Flask, jsonify, request
+from flask import jsonify, request
 from flask import render_template, flash, redirect, url_for, session
-from flask_mail import Mail, Message
+from flask_mail import Message
 from flask_paginate import Pagination, get_page_args
-from flask_pymongo import PyMongo
-from flask_restful import Api
-#from flask_restplus import Resource, Api
 from itsdangerous import URLSafeTimedSerializer
 # from pymongo import MongoClient
 from passlib.hash import sha256_crypt
 from wtforms import Form, StringField, PasswordField, validators
 
 from Users.UserRegister import UsersRegisteration
+from common.config import mongo, api, mail, app
 from common.util import date_time, generateApiKeys, getNetworkName, gen_reset_password, UserExist, \
     generateReturnDictionary
-
+from resources.checkbalance import CheckBalance
+from resources.payloan import PayLoan
 ##################################################
 # 	                  API SECTION
 ##################################################
 from resources.register import Registration
+from resources.takeloan import TakeLoan
 from resources.topup import TopUp
 from resources.transfer import TransferMoney
-from resources.checkbalance import CheckBalance, auth
-from resources.takeloan import TakeLoan
-from resources.payloan import PayLoan
 from resources.withdraw import WithdrawMoney
-
-from common.config import mongo, api, mail, app
 
 # app = Flask(__name__)
 # app.config.update(dict(
@@ -343,6 +339,20 @@ def dashboard():
                            per_page=per_page,
                            pagination=pagination)
 
+# Balance Form Class
+class BalanceForm(Form):
+    balance = StringField('Balance')
+    debt = StringField('Debt')
+
+
+# Email Form Class
+class EmailForm(Form):
+    email = StringField('Email', [validators.DataRequired(), validators.Length(min=6, max=50)])
+    # email = StringField('Email', validators=[validators.DataRequired(), Email(), Length(min=6, max=40)])
+
+# Password Form
+class PasswordForm(Form):
+    password = PasswordField('Password', [validators.DataRequired()])
 
 # Register Form Class
 class RegisterForm(Form):
@@ -357,7 +367,7 @@ class RegisterForm(Form):
     ])
     confirm = PasswordField('Confirm Password')
 
-
+# Logon Form Class
 class LogonForm(Form):
     username = StringField('Username', [validators.DataRequired(), validators.Length(min=4, max=25)])
     password = PasswordField('Password', [validators.DataRequired(), validators.Length(min=4, max=25)])
@@ -417,7 +427,7 @@ def signup():
 
 
 # User login
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/momo/api/v1.0/login', methods=['GET', 'POST'])
 def login():
     '''User login'''
     form = LogonForm(request.form)
@@ -455,10 +465,7 @@ def login():
     return render_template('login.html')
 
 
-# Balance Form Class
-class BalanceForm(Form):
-    balance = StringField('Balance')
-    debt = StringField('Debt')
+
 
 
 #########################################################
@@ -517,19 +524,6 @@ def change_password():
         # Error Message
         if len(errors) > 0:
             return render_template('change_password.html', errors=errors)
-
-
-###################################################
-# send email
-###################################################
-class EmailForm(Form):
-    email = StringField('Email', [validators.DataRequired(), validators.Length(min=6, max=50)])
-    # email = StringField('Email', validators=[validators.DataRequired(), Email(), Length(min=6, max=40)])
-
-
-class PasswordForm(Form):
-    password = PasswordField('Password', [validators.DataRequired()])
-
 
 @app.route('/reset', methods=["GET", "POST"])
 def reset():
@@ -700,14 +694,6 @@ api.add_resource(CheckBalance, '/momo/api/v1.0/balance', endpoint = '/balance')
 api.add_resource(WithdrawMoney, '/momo/api/v1.0/withdraw', endpoint = '/withdraw')
 api.add_resource(TakeLoan, '/momo/api/v1.0/loan', endpoint = '/loan')
 api.add_resource(PayLoan, '/momo/api/v1.0/pay', endpoint = '/pay')
-
-# api.add_resource(Registration,'/register')
-# api.add_resource(TopUp, '/topup')
-# api.add_resource(TransferMoney, '/transfer')
-# #api.add_resource(CheckBalance, '/balance')
-# api.add_resource(WithdrawMoney, '/withdraw')
-# api.add_resource(TakeLoan, '/loan')
-# api.add_resource(PayLoan, '/pay')
 
 if __name__ == '__main__':
     # app.run(host='0.0.0.0',port=80,debug=True)

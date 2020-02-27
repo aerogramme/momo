@@ -5,7 +5,8 @@ from binascii import hexlify
 from random import random
 
 from passlib.handlers.sha2_crypt import sha256_crypt
-from common.config import app, mail, api, mongo
+
+from common.config import mongo
 
 
 def date_time():
