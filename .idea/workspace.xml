@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3530751b-772b-47ec-8b4b-bb77ed37aca6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/common/util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/checkbalance.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/payloan.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/register.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/takeloan.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/topup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/transfer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/withdraw.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlaskMail.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskMail.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/payloan.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/payloan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/register.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/takeloan.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/takeloan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/topup.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/topup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/transfer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/withdraw.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/withdraw.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -15,12 +15,10 @@ app.config.update(dict(
 
 mail = Mail(app)
 
-
-
 # app.config['MAIL_SERVER']='smtp.gmail.com'
 # app.config['MAIL_PORT'] = 465
 # app.config['MAIL_USERNAME'] = 'theodondre@gmail.com'
-# app.config['MAIL_PASSWORD'] = 'Akron45449@'
+# app.config['MAIL_PASSWORD'] = ''
 # app.config['MAIL_USE_SSL'] = True
 # app.config['MAIL_USE_TLS'] = False
 
@@ -37,7 +35,7 @@ def send_mail():
 		return(str(e))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+	app.run(debug=True)
 
 
 
@@ -45,7 +43,7 @@ if __name__ == '__main__':
 # export MAIL_PORT=587
 # export MAIL_USE_TLS=1
 # export MAIL_USERNAME=theodondre@gmail.com
-# export MAIL_PASSWORD=Akron45449@
+# export MAIL_PASSWORD=
 
 
 # from flask_mail import Message

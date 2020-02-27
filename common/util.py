@@ -3,12 +3,9 @@ import os
 import uuid
 from binascii import hexlify
 from random import random
-from flask_restful import Api
-from flask_mail import Mail, Message
-from flask import Flask, jsonify, request
-from flask_pymongo import PyMongo
 
 from passlib.handlers.sha2_crypt import sha256_crypt
+
 
 def date_time():
     '''current date and time'''
