@@ -17,6 +17,18 @@
           <option value="Student" />
           <option value="Addr" />
           <option value="web.runPerson.*" />
+          <option value="getNetworkName" />
+          <option value="verifyCredentials" />
+          <option value="cashWithUser" />
+          <option value="debtWithUser" />
+          <option value="updateAccount" />
+          <option value="updateDebt" />
+          <option value="mongo" />
+          <option value="transaction_id" />
+          <option value="date_time" />
+          <option value="generateReturnDictionary" />
+          <option value="UserExist" />
+          <option value="generateApiKeys" />
         </list>
       </option>
     </inspection_tool>
