@@ -83,10 +83,44 @@ python app.py
  ![alt text](https://github.com/aerogramme/momo/blob/master/topup.png)
 
 # CURL
+
 ```
+Localhost:
+
+curl -X POST \
+  http://127.0.0.1:5000/momo/api/v1.0/balance \
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Authorization: Basic ZnJlZXdvcmxkYm9zczpjcSM0JkRzNn5LKzBpd1Vf' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Length: 307' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: 127.0.0.1:5000' \
+  -H 'Postman-Token: 8154208d-7996-4656-8962-add3e79aa1ed,cb850032-7c79-43ae-bb4a-898af9b813d2' \
+  -H 'User-Agent: PostmanRuntime/7.18.0' \
+  -H 'cache-control: no-cache' \
+  -d '{
+   "username": "freeworldboss",
+   "password": "cq#4&Ds6~K+0iwU_",
+   "firstname":"THEOPHILUS",
+   "lastname":"SIAMEH",
+   "fromPhone":"0243559227",
+   "toPhone":"0205592278",
+   "email":"theodondre@gmail.com",
+   "amount": 8749.31,
+   "network": "MTN",
+   "fromNetwork":"MTN",
+   "toNetwork":"VODAFONE"
+}'
+
+
+Remote:
+
  curl -X POST \
   http://35.236.211.103:80/balance \
   -H 'Accept: */*' \
+  -H 'Authorization: Basic ZnJlZXdvcmxkYm9zczpjcSM0JkRzNn5LKzBpd1Vf' \
   -H 'Accept-Encoding: gzip, deflate' \
   -H 'Cache-Control: no-cache' \
   -H 'Connection: keep-alive' \

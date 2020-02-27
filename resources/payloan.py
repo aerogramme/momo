@@ -4,7 +4,7 @@ from flask_restful import Resource
 from common.util import getNetworkName, verifyCredentials, cashWithUser, debtWithUser, updateAccount, updateDebt, \
     transaction_id, date_time, generateReturnDictionary
 
-
+from common.config import app, mail, api, mongo
 # _, mongo,_,_ = flask_run()
 
 class PayLoan(Resource):

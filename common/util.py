@@ -5,15 +5,16 @@ from binascii import hexlify
 from random import random
 
 from passlib.handlers.sha2_crypt import sha256_crypt
+from common.config import app, mail, api, mongo
 
 
 def date_time():
     '''current date and time'''
-    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def getPrettyTime():
     """Get user's pretty current time"""
-    rightnow = datetime.today()
+    rightnow = datetime.datetime.today()
     prettytime = rightnow.ctime()
     return prettytime
 

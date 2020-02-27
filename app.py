@@ -12,6 +12,7 @@ from flask_mail import Mail, Message
 from flask_paginate import Pagination, get_page_args
 from flask_pymongo import PyMongo
 from flask_restful import Api
+#from flask_restplus import Resource, Api
 from itsdangerous import URLSafeTimedSerializer
 # from pymongo import MongoClient
 from passlib.hash import sha256_crypt
@@ -27,29 +28,31 @@ from common.util import date_time, generateApiKeys, getNetworkName, gen_reset_pa
 from resources.register import Registration
 from resources.topup import TopUp
 from resources.transfer import TransferMoney
-from resources.checkbalance import CheckBalance
+from resources.checkbalance import CheckBalance, auth
 from resources.takeloan import TakeLoan
 from resources.payloan import PayLoan
 from resources.withdraw import WithdrawMoney
 
+from common.config import mongo, api, mail, app
 
-app = Flask(__name__)
-app.config.update(dict(
-    DEBUG=True,
-    MAIL_SERVER='smtp.googlemail.com',
-    MAIL_PORT=465,
-    MAIL_USE_TLS=False,
-    MAIL_USE_SSL=True,
-    MAIL_USERNAME='theodondre@gmail.com',
-    MAIL_PASSWORD='offpjnvauklxwivk'
-))
+# app = Flask(__name__)
+# app.config.update(dict(
+#     DEBUG=True,
+#     MAIL_SERVER='smtp.googlemail.com',
+#     MAIL_PORT=465,
+#     MAIL_USE_TLS=False,
+#     MAIL_USE_SSL=True,
+#     MAIL_USERNAME='theodondre@gmail.com',
+#     MAIL_PASSWORD='offpjnvauklxwivk'
+# ))
+#
+# app.config['SECRET_KEY'] = "MobileMoney"
+# # app.config["MONGO_URI"] = "mongodb://localhost:27017/MobileMoneyDB"
+# app.config["MONGO_URI"] = "mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority"
+# mongo = PyMongo(app)
+# api   = Api(app)
+# mail  = Mail(app)
 
-app.config['SECRET_KEY'] = "MobileMoney"
-# app.config["MONGO_URI"] = "mongodb://localhost:27017/MobileMoneyDB"
-app.config["MONGO_URI"] = "mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority"
-mongo = PyMongo(app)
-api   = Api(app)
-mail  = Mail(app)
 
 #######################################################################################################################
 # client = MongoClient("mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority")
@@ -93,7 +96,7 @@ def index():
     # return jsonify({'ip': request.remote_addr}), 200
     # register = mongo.db.Register
     # list_users = register.insert_one({"Username":"Anthony"})
-    return render_template('/templates/home.html')
+    return render_template('home.html')
 
 
 ############################################
@@ -209,13 +212,10 @@ def listusers():
     registeredUsers = mongo.db.Register
     listUsers = registeredUsers.find({})
     # total = listUsers.count()
-
     total = len(users)
 
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     listUser = listUsers.skip((page - 1) * per_page).limit(per_page)
-
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
     return render_template("listusers.html",
@@ -229,13 +229,10 @@ def listusers():
 def withdraw():
     withdrawHistory = mongo.db.Withdrawal
     withdrawalObject = withdrawHistory.find({})
-
     total = len(users)
 
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     withdrawalObject = withdrawalObject.skip((page - 1) * per_page).limit(per_page)
-
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
     return render_template("withdrawal.html",
@@ -249,13 +246,10 @@ def withdraw():
 def balance():
     balanceHistory = mongo.db.Register
     balanceObject = balanceHistory.find({})
-
     total = len(users)
 
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     balanceObject = balanceObject.skip((page - 1) * per_page).limit(per_page)
-
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
     return render_template("checkbalance.html",
@@ -272,9 +266,7 @@ def topups():
     total = len(users)
 
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     topup = topup.skip((page - 1) * per_page).limit(per_page)
-
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
     return render_template("topups.html",
@@ -288,13 +280,10 @@ def topups():
 def loan():
     loans = mongo.db.Takeloan
     loanObject = loans.find({})
-
     total = len(users)
 
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     loanObject = loanObject.skip((page - 1) * per_page).limit(per_page)
-
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
     return render_template("takeloan.html",
@@ -308,13 +297,10 @@ def loan():
 def pay():
     payloans = mongo.db.Payloan
     payloanObject = payloans.find({})
-
     total = len(users)
 
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     payloanObject = payloanObject.skip((page - 1) * per_page).limit(per_page)
-
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
     return render_template("payloan.html",
@@ -328,13 +314,10 @@ def pay():
 def transfer():
     transfers = mongo.db.Transfer
     transfersObject = transfers.find({})
-
     total = len(users)
 
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     transfersObject = transfersObject.skip((page - 1) * per_page).limit(per_page)
-
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
     return render_template("transfer.html",
@@ -348,13 +331,10 @@ def transfer():
 def dashboard():
     all_account = mongo.db.Register
     momo_account = all_account.find({})
-
     total = len(users)
 
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-
     momo_account = momo_account.skip((page - 1) * per_page).limit(per_page)
-
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
 
     return render_template("dashboard.html",
@@ -481,9 +461,9 @@ class BalanceForm(Form):
     debt = StringField('Debt')
 
 
-#####################
+#########################################################
 # change password
-#####################
+#########################################################
 
 @app.route("/change_password/", methods=['GET', 'POST'])
 @is_logged_in
@@ -539,9 +519,9 @@ def change_password():
             return render_template('change_password.html', errors=errors)
 
 
-######################
+###################################################
 # send email
-######################
+###################################################
 class EmailForm(Form):
     email = StringField('Email', [validators.DataRequired(), validators.Length(min=6, max=50)])
     # email = StringField('Email', validators=[validators.DataRequired(), Email(), Length(min=6, max=40)])
@@ -564,7 +544,7 @@ def reset():
             return render_template('password_reset_email.html', form=form)
 
         if emailFound:
-            send_password_reset_email(emailFound)
+            #send_password_reset_email(emailFound)
             flash('Please check your email for a password reset link.', 'success')
         else:
             flash('Your email address must be confirmed before attempting a password reset.', 'error')
@@ -711,14 +691,23 @@ def delete_account(id):
 #     monthlyPayment = loanAmount * monthlyInterateRate/(1.0 - math.pow(1.0 + monthlyInterateRate,-(numberOfYears * 12)))
 #     return monthlyPayment
 
+
 # End Points
-api.add_resource(Registration, '/register')
-api.add_resource(TopUp, '/topup')
-api.add_resource(TransferMoney, '/transfer')
-api.add_resource(CheckBalance, '/balance')
-api.add_resource(WithdrawMoney, '/withdraw')
-api.add_resource(TakeLoan, '/loan')
-api.add_resource(PayLoan, '/pay')
+api.add_resource(Registration, '/momo/api/v1.0/register', endpoint = '/register')
+api.add_resource(TopUp, '/momo/api/v1.0/topup', endpoint = '/topup')
+api.add_resource(TransferMoney, '/momo/api/v1.0/transfer', endpoint = '/transfer')
+api.add_resource(CheckBalance, '/momo/api/v1.0/balance', endpoint = '/balance')
+api.add_resource(WithdrawMoney, '/momo/api/v1.0/withdraw', endpoint = '/withdraw')
+api.add_resource(TakeLoan, '/momo/api/v1.0/loan', endpoint = '/loan')
+api.add_resource(PayLoan, '/momo/api/v1.0/pay', endpoint = '/pay')
+
+# api.add_resource(Registration,'/register')
+# api.add_resource(TopUp, '/topup')
+# api.add_resource(TransferMoney, '/transfer')
+# #api.add_resource(CheckBalance, '/balance')
+# api.add_resource(WithdrawMoney, '/withdraw')
+# api.add_resource(TakeLoan, '/loan')
+# api.add_resource(PayLoan, '/pay')
 
 if __name__ == '__main__':
     # app.run(host='0.0.0.0',port=80,debug=True)

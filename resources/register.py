@@ -3,6 +3,7 @@ from flask_restful import Resource
 from passlib.handlers.sha2_crypt import sha256_crypt
 
 from common.util import getNetworkName, date_time, generateReturnDictionary, UserExist, generateApiKeys
+from common.config import app, mail, api, mongo
 
 # _, mongo,_,_ = flask_run()
 
