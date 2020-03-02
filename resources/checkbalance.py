@@ -10,8 +10,45 @@ verify_password(users.get("username"), users.get("password"))
 unauthorized
 
 class CheckBalance(Resource):
+
     @auth.login_required
     def post(self):
+        """
+       This examples uses FlaskRESTful Resource
+       It works also with swag_from, schemas and spec_dict
+       ---
+       parameters:
+         - in: path
+           name: username
+           type: string
+           required: true
+         - in: path
+           name: password
+           type: string
+           required: true
+         - in: path
+           name: phone
+           type: string
+           required: false
+       responses:
+         200:
+           description: Check Balance on MoMo Wallet
+           schema:
+             id: CheckBalance
+             properties:
+               username:
+                 type: string
+                 description: The username of the user
+                 default: freeworldboss
+               password:
+                 type: string
+                 description: The password of the user
+                 default: cq#4&Ds6~K+0iwU_
+               phone:
+                 type: string
+                 description: The phone of the user
+                 default: 0243559227
+        """
         postedData = request.get_json()
         phone = postedData["fromPhone"]
         username = postedData["username"]

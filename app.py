@@ -1,53 +1,68 @@
 #!/usr/bin/python
-#############################################
-# Author: Theophilus Siameh
-#############################################
+########################################################
+__author__ = 'Theophilus Siameh'
+__author_email__ = 'theodondre@gmail.com'
+__copyright__ = 'Copyright (C) 2020 Theophilus Siameh'
+__version__ = 1.0
+########################################################
 
 from functools import wraps
-
 from bson.json_util import dumps
 from bson.objectid import ObjectId
-from flask import jsonify, request
+from flask import jsonify, request, Flask
 from flask import render_template, flash, redirect, url_for, session
-from flask_mail import Message
+from flask_mail import Message, Mail
 from flask_paginate import Pagination, get_page_args
+from flask_pymongo import PyMongo
+from flask_restful import Api
 from itsdangerous import URLSafeTimedSerializer
 # from pymongo import MongoClient
 from passlib.hash import sha256_crypt
+from flasgger import Swagger
 from wtforms import Form, StringField, PasswordField, validators
 
-from Users.UserRegister import UsersRegisteration
+from Users.mongodbObjects import UsersRegisteration
+
 from common.config import mongo, api, mail, app
+from common.mongo_cred import data
 from common.util import date_time, generateApiKeys, getNetworkName, gen_reset_password, UserExist, \
     generateReturnDictionary
+
+##################################################
+# API SECTION
+##################################################
 from resources.checkbalance import CheckBalance
 from resources.payloan import PayLoan
-##################################################
-# 	                  API SECTION
-##################################################
 from resources.register import Registration
 from resources.takeloan import TakeLoan
 from resources.topup import TopUp
 from resources.transfer import TransferMoney
 from resources.withdraw import WithdrawMoney
 
-# app = Flask(__name__)
-# app.config.update(dict(
-#     DEBUG=True,
-#     MAIL_SERVER='smtp.googlemail.com',
-#     MAIL_PORT=465,
-#     MAIL_USE_TLS=False,
-#     MAIL_USE_SSL=True,
-#     MAIL_USERNAME='theodondre@gmail.com',
-#     MAIL_PASSWORD='offpjnvauklxwivk'
-# ))
-#
-# app.config['SECRET_KEY'] = "MobileMoney"
-# # app.config["MONGO_URI"] = "mongodb://localhost:27017/MobileMoneyDB"
-# app.config["MONGO_URI"] = "mongodb+srv://mobilemoney:Abc12345@mobilemoney-q3w48.mongodb.net/MobileMoneyDB?retryWrites=true&w=majority"
-# mongo = PyMongo(app)
-# api   = Api(app)
-# mail  = Mail(app)
+# MongoDB Credentials
+DB = data.get("DB")
+USERNAME = data.get("username")
+PASSWORD = data.get("password")
+
+app = Flask(__name__)
+swagger = Swagger(app)
+
+app.config.update(dict(
+    DEBUG=True,
+    MAIL_SERVER='smtp.googlemail.com',
+    MAIL_PORT=465,
+    MAIL_USE_TLS=False,
+    MAIL_USE_SSL=True,
+    MAIL_USERNAME='theodondre@gmail.com',
+    MAIL_PASSWORD='offpjnvauklxwivk'
+))
+
+app.config['SECRET_KEY'] = "MobileMoney"
+app.config["MONGO_URI"] = "mongodb+srv://{0}:{1}@mobilemoney-q3w48.mongodb.net/{2}?retryWrites=true&w=majority".format(USERNAME, PASSWORD, DB)
+
+mongo = PyMongo(app)
+api   = Api(app)
+mail  = Mail(app)
 
 
 #######################################################################################################################
@@ -92,6 +107,8 @@ def index():
     # return jsonify({'ip': request.remote_addr}), 200
     # register = mongo.db.Register
     # list_users = register.insert_one({"Username":"Anthony"})
+    if 'username' in session:
+        return 'You are logged in as ' + session['username']
     return render_template('home.html')
 
 
@@ -137,7 +154,7 @@ def search():
         q = request.form['search']
         findByUsername = mongo.db.Register
 
-        # search db
+        # search db by username, email or phone
         searchResult = findByUsername.find({"$or": [
             {"Username": {'$regex': q}},
             {"Email": {'$regex': q}},
@@ -344,7 +361,6 @@ class BalanceForm(Form):
     balance = StringField('Balance')
     debt = StringField('Debt')
 
-
 # Email Form Class
 class EmailForm(Form):
     email = StringField('Email', [validators.DataRequired(), validators.Length(min=6, max=50)])
@@ -375,8 +391,9 @@ class LogonForm(Form):
 
 @app.route('/show')
 def showdata():
-    data = mongo.db.Register.find_one({"Username": "Theo.kartel"})
-    return dumps(data['Username'] + ':' + data['Password'])
+    data = mongo.db.Register.find_one({"Username": "iwan"})
+    #dumps(data['Username'] + ':' + data['Password'])
+    return jsonify(data.get("Password"))
 
 
 # User Register
@@ -394,19 +411,21 @@ def signup():
         password = form.password.data
         network = getNetworkName(phone)
 
-        # check if phone number exist
-        if UserExist(phone):
-            return jsonify(generateReturnDictionary(301, 'Invalid Username/Phone', "FAILURE"))
+        # check if phone/username number exist
+        if not UserExist(phone):
+            # return jsonify(generateReturnDictionary(301, 'Phone number already Exist', "FAILURE"))
+            error = 'Phone number already Exists'
+            return render_template('login.html', error=error)
+        if not UserExist(username):
+            return jsonify(generateReturnDictionary(301, 'Username already Exist', "FAILURE"))
 
         reg = mongo.db.Register
         existing_user = reg.find_one({"Phone": phone})
         if existing_user is None:
             # hash password
-            hashed_pw = sha256_crypt.hash(str(password))
+            hashed_pw = sha256_crypt.hash(password)
             # insert into db
-
-            userReg = UsersRegisteration(firstname, lastname, email, phone, network, username, hashed_pw, balance=0.0,
-                                         debt=0.0)
+            userReg = UsersRegisteration(firstname, lastname, email, phone, network, username, hashed_pw, balance=0.0,debt=0.0)
             reg.insert_one({
                 "FirstName": userReg.firstname,
                 "LastName": userReg.lastname,
@@ -414,7 +433,7 @@ def signup():
                 "Phone": userReg.phone,
                 "Network": userReg.network,
                 "Username": userReg.username,
-                "Password": userReg.hashed_pw,
+                "Password": userReg.password,
                 "Balance": userReg.balance,
                 "Debt": userReg.debt,
                 "DateTimeCreated": date_time(),
@@ -427,7 +446,7 @@ def signup():
 
 
 # User login
-@app.route('/momo/api/v1.0/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     '''User login'''
     form = LogonForm(request.form)
@@ -437,21 +456,8 @@ def login():
         username = form.username.data  # request.form['username']
         password_candidate = form.password.data  # request.form['password']
 
-        # Get user by username
-        # Get stored hash
-        hashed_pw = mongo.db.Register.find_one({"Username": username})
-
-        # Compare Passwords
-        if sha256_crypt.verify(str(password_candidate), hashed_pw['Password']):
-            # passed
-            session['logged_in'] = True
-            session['username'] = username
-
-            flash('You are now logged in', 'success')
-            return redirect(url_for('dashboard'))
-
-        if not sha256_crypt.verify(str(password_candidate), hashed_pw['Password']):
-            error = 'Invalid password'
+        if password_candidate == '' or username == '':
+            error = 'Password/Username is required'
             return render_template('login.html', error=error)
         if username is None or username == '':
             error = 'Username is required'
@@ -459,14 +465,32 @@ def login():
         if password_candidate is None or password_candidate == '':
             error = 'Password is required'
             return render_template('login.html', error=error)
-        if password_candidate == '' and username == '':
-            error = 'Password/Username is required'
+
+        # Get user by username
+        # Get stored hash
+        hashed_pw = mongo.db.Register.find_one({"Username": username})
+        print(hashed_pw)
+        username_new = hashed_pw["Username"]
+        print(username_new)
+        #password_new = hashed_pw["Password"]
+
+
+        # Compare Passwords
+        if sha256_crypt.verify(password_candidate, hashed_pw["Password"]):
+            # passed
+            session['logged_in'] = True
+            session['username'] = username
+
+            flash('You are now logged in', 'success')
+            return redirect(url_for('dashboard'))
+        if not sha256_crypt.verify(password_candidate, hashed_pw['Password']):
+            error = 'Invalid Username/Password, Try Again!'
             return render_template('login.html', error=error)
+        if not (sha256_crypt.verify(hashed_pw['Username'], str(username))):
+            error = 'Invalid Username/Password, Try Again!'
+            return render_template('login.html', error=error)
+
     return render_template('login.html')
-
-
-
-
 
 #########################################################
 # change password
@@ -687,13 +711,13 @@ def delete_account(id):
 
 
 # End Points
-api.add_resource(Registration, '/momo/api/v1.0/register', endpoint = '/register')
-api.add_resource(TopUp, '/momo/api/v1.0/topup', endpoint = '/topup')
-api.add_resource(TransferMoney, '/momo/api/v1.0/transfer', endpoint = '/transfer')
-api.add_resource(CheckBalance, '/momo/api/v1.0/balance', endpoint = '/balance')
-api.add_resource(WithdrawMoney, '/momo/api/v1.0/withdraw', endpoint = '/withdraw')
-api.add_resource(TakeLoan, '/momo/api/v1.0/loan', endpoint = '/loan')
-api.add_resource(PayLoan, '/momo/api/v1.0/pay', endpoint = '/pay')
+api.add_resource(Registration, '/momo/api/v1/register', endpoint = '/register')
+api.add_resource(TopUp, '/momo/api/v1/topup', endpoint = '/topup')
+api.add_resource(TransferMoney, '/momo/api/v1/transfer', endpoint = '/transfer')
+api.add_resource(CheckBalance, '/momo/api/v1/balance', endpoint = '/balance')
+api.add_resource(WithdrawMoney, '/momo/api/v1/withdraw', endpoint = '/withdraw')
+api.add_resource(TakeLoan, '/momo/api/v1/loan', endpoint = '/loan')
+api.add_resource(PayLoan, '/momo/api/v1/pay', endpoint = '/pay')
 
 if __name__ == '__main__':
     # app.run(host='0.0.0.0',port=80,debug=True)

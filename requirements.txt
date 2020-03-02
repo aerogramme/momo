@@ -1,0 +1,12 @@
+PyMongo
+passlib
+flasgger
+flask_paginate
+flask_mail
+bson
+wtforms
+flask_restful
+flask_httpauth
+itsdangerous
+flask_mail
+flask_jwt

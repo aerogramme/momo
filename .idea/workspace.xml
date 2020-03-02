@@ -2,10 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3530751b-772b-47ec-8b4b-bb77ed37aca6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/common/mongo_credentials.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arg_parser_api/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arg_parser_api/app2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arg_parser_api/jwtApiDemo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arg_parser_api/pyJwtDemo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arg_parser_api/pyJwtDemo2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic-auth/simple_auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swagger-iu/colors.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swagger-iu/flasgger-swagger.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swagger-iu/swagger-demo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swagger-iu/swagger-ui-example2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swagger-iu/swagger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/UserRegister.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/mongodbObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/mongo_credentials.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/mongo_cred.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/checkbalance.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/checkbalance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/includes/_navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/_navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,27 +65,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.app (1)">
-    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="MoMoApp" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__init__.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -130,7 +128,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="checkbalance" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="flasgger-swagger" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,11 +136,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/resources" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swagger-iu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/resourcess/checkbalance.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swagger-iu/flasgger-swagger.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -151,7 +149,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="multi_auth" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="swagger-demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -159,11 +157,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/basic-auth" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swagger-iu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/basic-auth/multi_auth.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swagger-iu/swagger-demo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -172,7 +170,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="register" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="swagger-ui-example2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -180,11 +178,32 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/resources" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swagger-iu" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/resourcess/register.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swagger-iu/swagger-ui-example2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="swagger" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MoMoApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swagger-iu" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swagger-iu/swagger.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -196,10 +215,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.app (1)" />
-        <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.register" />
-        <item itemvalue="Python.checkbalance" />
-        <item itemvalue="Python.multi_auth" />
+        <item itemvalue="Python.flasgger-swagger" />
+        <item itemvalue="Python.swagger-demo" />
+        <item itemvalue="Python.swagger" />
+        <item itemvalue="Python.swagger-ui-example2" />
       </list>
     </recent_temporary>
   </component>
@@ -230,34 +249,34 @@
       <screen x="1680" y="23" width="2560" height="1417" />
     </state>
     <state x="2412" y="455" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582647461088" />
-    <state width="2120" height="333" key="GridCell.Tab.0.bottom" timestamp="1582835498394">
-      <screen x="1680" y="23" width="2560" height="1417" />
+    <state width="1638" height="265" key="GridCell.Tab.0.bottom" timestamp="1583086755128">
+      <screen x="0" y="23" width="1680" height="1002" />
     </state>
-    <state width="1659" height="289" key="GridCell.Tab.0.bottom/0.23.1680.1001@0.23.1680.1001" timestamp="1582787561768" />
-    <state width="1659" height="289" key="GridCell.Tab.0.bottom/0.23.1680.1002@0.23.1680.1002" timestamp="1582771859323" />
-    <state width="2120" height="333" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582835498394" />
-    <state width="2141" height="289" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582823784543" />
-    <state width="2120" height="333" key="GridCell.Tab.0.center" timestamp="1582835498392">
-      <screen x="1680" y="23" width="2560" height="1417" />
+    <state width="1638" height="265" key="GridCell.Tab.0.bottom/0.23.1680.1001@0.23.1680.1001" timestamp="1582867233601" />
+    <state width="1638" height="265" key="GridCell.Tab.0.bottom/0.23.1680.1002@0.23.1680.1002" timestamp="1583086755128" />
+    <state width="1638" height="265" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582932700493" />
+    <state width="1638" height="265" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582928546754" />
+    <state width="1638" height="265" key="GridCell.Tab.0.center" timestamp="1583086755126">
+      <screen x="0" y="23" width="1680" height="1002" />
     </state>
-    <state width="1659" height="289" key="GridCell.Tab.0.center/0.23.1680.1001@0.23.1680.1001" timestamp="1582787561767" />
-    <state width="1659" height="289" key="GridCell.Tab.0.center/0.23.1680.1002@0.23.1680.1002" timestamp="1582771859322" />
-    <state width="2120" height="333" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582835498392" />
-    <state width="2141" height="289" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582823784542" />
-    <state width="2120" height="333" key="GridCell.Tab.0.left" timestamp="1582835498391">
-      <screen x="1680" y="23" width="2560" height="1417" />
+    <state width="1638" height="265" key="GridCell.Tab.0.center/0.23.1680.1001@0.23.1680.1001" timestamp="1582867233600" />
+    <state width="1638" height="265" key="GridCell.Tab.0.center/0.23.1680.1002@0.23.1680.1002" timestamp="1583086755126" />
+    <state width="1638" height="265" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582932700491" />
+    <state width="1638" height="265" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582928546753" />
+    <state width="1638" height="265" key="GridCell.Tab.0.left" timestamp="1583086755125">
+      <screen x="0" y="23" width="1680" height="1002" />
     </state>
-    <state width="1659" height="289" key="GridCell.Tab.0.left/0.23.1680.1001@0.23.1680.1001" timestamp="1582787561766" />
-    <state width="1659" height="289" key="GridCell.Tab.0.left/0.23.1680.1002@0.23.1680.1002" timestamp="1582771859322" />
-    <state width="2120" height="333" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582835498391" />
-    <state width="2141" height="289" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582823784542" />
-    <state width="2120" height="333" key="GridCell.Tab.0.right" timestamp="1582835498393">
-      <screen x="1680" y="23" width="2560" height="1417" />
+    <state width="1638" height="265" key="GridCell.Tab.0.left/0.23.1680.1001@0.23.1680.1001" timestamp="1582867233594" />
+    <state width="1638" height="265" key="GridCell.Tab.0.left/0.23.1680.1002@0.23.1680.1002" timestamp="1583086755125" />
+    <state width="1638" height="265" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582932700491" />
+    <state width="1638" height="265" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582928546752" />
+    <state width="1638" height="265" key="GridCell.Tab.0.right" timestamp="1583086755126">
+      <screen x="0" y="23" width="1680" height="1002" />
     </state>
-    <state width="1659" height="289" key="GridCell.Tab.0.right/0.23.1680.1001@0.23.1680.1001" timestamp="1582787561767" />
-    <state width="1659" height="289" key="GridCell.Tab.0.right/0.23.1680.1002@0.23.1680.1002" timestamp="1582771859323" />
-    <state width="2120" height="333" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582835498393" />
-    <state width="2141" height="289" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582823784543" />
+    <state width="1638" height="265" key="GridCell.Tab.0.right/0.23.1680.1001@0.23.1680.1001" timestamp="1582867233600" />
+    <state width="1638" height="265" key="GridCell.Tab.0.right/0.23.1680.1002@0.23.1680.1002" timestamp="1583086755126" />
+    <state width="1638" height="265" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582932700492" />
+    <state width="1638" height="265" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582928546753" />
     <state x="319" y="143" key="SettingsEditor" timestamp="1582516567660">
       <screen x="0" y="23" width="1680" height="1002" />
     </state>

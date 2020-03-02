@@ -1,6 +1,5 @@
-from flask import request, jsonify, make_response
+from flask import jsonify, make_response
 from flask_httpauth import HTTPBasicAuth
-from flask_restful import Resource
 from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = HTTPBasicAuth()
@@ -19,4 +18,3 @@ def verify_password(username, password):
 @auth.error_handler
 def unauthorized():
     return make_response(jsonify({'Error': 'Unauthorized Access'}), 401)
-
