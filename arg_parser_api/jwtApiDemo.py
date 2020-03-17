@@ -1,3 +1,4 @@
+
 # pip install Flask-JWT
 # curl -X GET http://localhost:5000/api/v1/private
 # curl -H "Content-Type: application/json" -X POST -d '{"username":"masnun","password":"abc123"}' http://localhost:5000/auth # generate token

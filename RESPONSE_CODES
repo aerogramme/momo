@@ -1,0 +1,18 @@
+Code	Reason
+000	Transaction successful
+101	Insufficient funds in wallet
+101, 105	Insufficient funds in wallet
+100	Transaction not permitted to cardholder
+102	Number not registered for mobile money
+103	Wrong PIN or transaction timed out
+104	Transaction declined or terminated
+105	Invalid amount or general failure. Try changing transaction id
+111	Payment request sent successfully
+107	USSD is busy, please try again later
+114	Invalid Voucher code
+200	VBV Required
+100	Transaction Failed or Declined
+600	Access Denied
+979	Access Denied. Invalid Credential
+909	Duplicate Transaction ID. Transaction ID must be unique
+999	Access Denied. Merchant ID is not set

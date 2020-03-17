@@ -10,6 +10,7 @@ app.config['BASIC_AUTH_PASSWORD'] = 'doe'
 
 basic_auth = BasicAuth(app)
 
+
 @app.route('/secret')
 @basic_auth.required
 def secret_view():

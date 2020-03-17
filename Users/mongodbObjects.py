@@ -7,8 +7,8 @@ class UsersRegisteration(object):
         self.network = network
         self.username = username
         self.password = password
-        self.balance = 0.0
-        self.debt = 0.0
+        self.balance = balance
+        self.debt = debt
 
 class TopUpMongo(object):
     def __init__(self, username, amount, network, phone):

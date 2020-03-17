@@ -7,7 +7,6 @@ __version__ = 1.0
 ########################################################
 
 from functools import wraps
-from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask import jsonify, request, Flask
 from flask import render_template, flash, redirect, url_for, session
@@ -20,6 +19,8 @@ from itsdangerous import URLSafeTimedSerializer
 from passlib.hash import sha256_crypt
 from flasgger import Swagger
 from wtforms import Form, StringField, PasswordField, validators
+
+from flask_jwt_extended import (JWTManager, jwt_required, create_access_token,get_jwt_identity)
 
 from Users.mongodbObjects import UsersRegisteration
 
@@ -46,6 +47,7 @@ PASSWORD = data.get("password")
 
 app = Flask(__name__)
 swagger = Swagger(app)
+jwt = JWTManager(app)
 
 app.config.update(dict(
     DEBUG=True,
@@ -57,7 +59,8 @@ app.config.update(dict(
     MAIL_PASSWORD='offpjnvauklxwivk'
 ))
 
-app.config['SECRET_KEY'] = "MobileMoney"
+# export SECRET_KEY = "f15f6748-c4d9-4c2b-bf61-1be3b7a9ed2c"
+app.config['SECRET_KEY'] = "f15f6748-c4d9-4c2b-bf61-1be3b7a9ed2c" #$SECRET_KEY
 app.config["MONGO_URI"] = "mongodb+srv://{0}:{1}@mobilemoney-q3w48.mongodb.net/{2}?retryWrites=true&w=majority".format(USERNAME, PASSWORD, DB)
 
 mongo = PyMongo(app)
@@ -474,7 +477,6 @@ def login():
         print(username_new)
         #password_new = hashed_pw["Password"]
 
-
         # Compare Passwords
         if sha256_crypt.verify(password_candidate, hashed_pw["Password"]):
             # passed
@@ -594,6 +596,7 @@ def reset_with_token(token):
         # db.session.add(user)
         # db.session.commit()
 
+        username = form.username.data
         password = form.password.data
 
         mongo.db.Register.update_one({
@@ -695,8 +698,7 @@ def delete_account(id):
         flash('Account does not exist', 'failure')
     else:
         mongo.db.Register.delete_one({"_id": ObjectId(account['_id'])})
-
-    flash('Account Deleted', 'success')
+        flash('Account Deleted', 'success')
     return redirect(url_for('dashboard'))
 
 

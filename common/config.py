@@ -10,7 +10,7 @@ DB = data.get("DB")
 USERNAME = data.get("username")
 PASSWORD = data.get("password")
 
-app = Flask(__name__,template_folder='template')
+app = Flask(__name__)
 swagger = Swagger(app)
 
 app.config.update(dict(

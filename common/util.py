@@ -49,7 +49,6 @@ def gen_reset_password(passlen=16):
     generated_password = "".join(random.sample(s, passlen))
     return str(generated_password)
 
-
 ###########################################################
 # 	FUNC SECTION
 ###########################################################

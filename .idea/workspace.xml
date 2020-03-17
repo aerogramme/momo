@@ -2,27 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3530751b-772b-47ec-8b4b-bb77ed37aca6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/arg_parser_api/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/arg_parser_api/app2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/arg_parser_api/jwtApiDemo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/arg_parser_api/pyJwtDemo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/arg_parser_api/pyJwtDemo2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic-auth/simple_auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/swagger-iu/colors.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/swagger-iu/flasgger-swagger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/swagger-iu/swagger-demo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/swagger-iu/swagger-ui-example2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/swagger-iu/swagger.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RESPONSE_CODES" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arg_parser_api/MongoDbRestFul.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arg_parser_api/MongoDbRestFul2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arg_parser_api/jwtExtendedDemo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/loginStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/swagger-iu/swagger.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Users/UserRegister.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/mongodbObjects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/mongodbObjects.py" beforeDir="false" afterPath="$PROJECT_DIR$/Users/mongodbObjects.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arg_parser_api/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/arg_parser_api/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arg_parser_api/app2.py" beforeDir="false" afterPath="$PROJECT_DIR$/arg_parser_api/app2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arg_parser_api/jwtApiDemo.py" beforeDir="false" afterPath="$PROJECT_DIR$/arg_parser_api/jwtApiDemo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic-auth/basicAuthDemo.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic-auth/basicAuthDemo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic-auth/digest_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic-auth/digest_auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/mongo_credentials.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/mongo_cred.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/checkbalance.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/checkbalance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/register.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/_navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/_navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
     </list>
@@ -64,7 +63,7 @@
       <recent name="$PROJECT_DIR$/basic-auth" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app (1)">
+  <component name="RunManager" selected="Python.jwtExtendedDemo">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -128,7 +127,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="flasgger-swagger" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="app2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -136,11 +135,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swagger-iu" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/arg_parser_api" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swagger-iu/flasgger-swagger.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/arg_parser_api/app2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -149,7 +148,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="swagger-demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="basic-auth" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -157,11 +156,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swagger-iu" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/basic-auth" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swagger-iu/swagger-demo.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/basic-auth/basic-auth.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,7 +169,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="swagger-ui-example2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="digest_auth" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -178,11 +177,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swagger-iu" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/basic-auth" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swagger-iu/swagger-ui-example2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/basic-auth/digest_auth.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -191,7 +190,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="swagger" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="jwtExtendedDemo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MoMoApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -199,11 +198,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/swagger-iu" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/arg_parser_api" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/swagger-iu/swagger.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/arg_parser_api/jwtExtendedDemo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -214,11 +213,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.jwtExtendedDemo" />
+        <item itemvalue="Python.app2" />
         <item itemvalue="Python.app (1)" />
-        <item itemvalue="Python.flasgger-swagger" />
-        <item itemvalue="Python.swagger-demo" />
-        <item itemvalue="Python.swagger" />
-        <item itemvalue="Python.swagger-ui-example2" />
+        <item itemvalue="Python.digest_auth" />
+        <item itemvalue="Python.basic-auth" />
       </list>
     </recent_temporary>
   </component>
@@ -245,37 +244,50 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="524" y="409" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583386520565">
+      <screen x="0" y="23" width="1680" height="1001" />
+    </state>
+    <state x="524" y="409" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.1001@0.23.1680.1001" timestamp="1583386520565" />
+    <state x="2478" y="570" key="#com.intellij.fileTypes.FileTypeChooser/1680.23.2560.1417/0.23.1680.1000@1680.23.2560.1417" timestamp="1583275696725" />
     <state x="2412" y="455" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582647461088">
       <screen x="1680" y="23" width="2560" height="1417" />
     </state>
     <state x="2412" y="455" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582647461088" />
-    <state width="1638" height="265" key="GridCell.Tab.0.bottom" timestamp="1583086755128">
-      <screen x="0" y="23" width="1680" height="1002" />
+    <state width="1638" height="311" key="GridCell.Tab.0.bottom" timestamp="1583509339844">
+      <screen x="1680" y="23" width="2560" height="1417" />
     </state>
-    <state width="1638" height="265" key="GridCell.Tab.0.bottom/0.23.1680.1001@0.23.1680.1001" timestamp="1582867233601" />
+    <state width="1638" height="409" key="GridCell.Tab.0.bottom/0.23.1680.1001@0.23.1680.1001" timestamp="1583386545840" />
     <state width="1638" height="265" key="GridCell.Tab.0.bottom/0.23.1680.1002@0.23.1680.1002" timestamp="1583086755128" />
-    <state width="1638" height="265" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582932700493" />
+    <state width="2518" height="409" key="GridCell.Tab.0.bottom/1680.0.2560.1440/0.0.1680.1050@1680.0.2560.1440" timestamp="1583184909730" />
+    <state width="1965" height="409" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1000@1680.23.2560.1417" timestamp="1583438129496" />
+    <state width="1638" height="311" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1583509339844" />
     <state width="1638" height="265" key="GridCell.Tab.0.bottom/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582928546754" />
-    <state width="1638" height="265" key="GridCell.Tab.0.center" timestamp="1583086755126">
-      <screen x="0" y="23" width="1680" height="1002" />
+    <state width="1638" height="311" key="GridCell.Tab.0.center" timestamp="1583509339843">
+      <screen x="1680" y="23" width="2560" height="1417" />
     </state>
-    <state width="1638" height="265" key="GridCell.Tab.0.center/0.23.1680.1001@0.23.1680.1001" timestamp="1582867233600" />
+    <state width="1638" height="409" key="GridCell.Tab.0.center/0.23.1680.1001@0.23.1680.1001" timestamp="1583386545838" />
     <state width="1638" height="265" key="GridCell.Tab.0.center/0.23.1680.1002@0.23.1680.1002" timestamp="1583086755126" />
-    <state width="1638" height="265" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582932700491" />
+    <state width="2518" height="409" key="GridCell.Tab.0.center/1680.0.2560.1440/0.0.1680.1050@1680.0.2560.1440" timestamp="1583184909728" />
+    <state width="1965" height="409" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1000@1680.23.2560.1417" timestamp="1583438129485" />
+    <state width="1638" height="311" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1583509339843" />
     <state width="1638" height="265" key="GridCell.Tab.0.center/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582928546753" />
-    <state width="1638" height="265" key="GridCell.Tab.0.left" timestamp="1583086755125">
-      <screen x="0" y="23" width="1680" height="1002" />
+    <state width="1638" height="311" key="GridCell.Tab.0.left" timestamp="1583509339843">
+      <screen x="1680" y="23" width="2560" height="1417" />
     </state>
-    <state width="1638" height="265" key="GridCell.Tab.0.left/0.23.1680.1001@0.23.1680.1001" timestamp="1582867233594" />
+    <state width="1638" height="409" key="GridCell.Tab.0.left/0.23.1680.1001@0.23.1680.1001" timestamp="1583386545835" />
     <state width="1638" height="265" key="GridCell.Tab.0.left/0.23.1680.1002@0.23.1680.1002" timestamp="1583086755125" />
-    <state width="1638" height="265" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582932700491" />
+    <state width="2518" height="409" key="GridCell.Tab.0.left/1680.0.2560.1440/0.0.1680.1050@1680.0.2560.1440" timestamp="1583184909709" />
+    <state width="1965" height="409" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1000@1680.23.2560.1417" timestamp="1583438129455" />
+    <state width="1638" height="311" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1583509339843" />
     <state width="1638" height="265" key="GridCell.Tab.0.left/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582928546752" />
-    <state width="1638" height="265" key="GridCell.Tab.0.right" timestamp="1583086755126">
-      <screen x="0" y="23" width="1680" height="1002" />
+    <state width="1638" height="311" key="GridCell.Tab.0.right" timestamp="1583509339844">
+      <screen x="1680" y="23" width="2560" height="1417" />
     </state>
-    <state width="1638" height="265" key="GridCell.Tab.0.right/0.23.1680.1001@0.23.1680.1001" timestamp="1582867233600" />
+    <state width="1638" height="409" key="GridCell.Tab.0.right/0.23.1680.1001@0.23.1680.1001" timestamp="1583386545839" />
     <state width="1638" height="265" key="GridCell.Tab.0.right/0.23.1680.1002@0.23.1680.1002" timestamp="1583086755126" />
-    <state width="1638" height="265" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1582932700492" />
+    <state width="2518" height="409" key="GridCell.Tab.0.right/1680.0.2560.1440/0.0.1680.1050@1680.0.2560.1440" timestamp="1583184909729" />
+    <state width="1965" height="409" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1000@1680.23.2560.1417" timestamp="1583438129485" />
+    <state width="1638" height="311" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1001@1680.23.2560.1417" timestamp="1583509339844" />
     <state width="1638" height="265" key="GridCell.Tab.0.right/1680.23.2560.1417/0.23.1680.1002@1680.23.2560.1417" timestamp="1582928546753" />
     <state x="319" y="143" key="SettingsEditor" timestamp="1582516567660">
       <screen x="0" y="23" width="1680" height="1002" />

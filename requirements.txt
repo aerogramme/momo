@@ -10,3 +10,5 @@ flask_httpauth
 itsdangerous
 flask_mail
 flask_jwt
+Flask-JWT
+flask-jwt-extended

@@ -8,14 +8,18 @@ app = Flask(__name__)
 api = Api(app, prefix="/api/v1")
 
 users = [
-    {"email": "masnun@gmail.com", "name": "Masnun", "id": 1}
+    {"email": "masnun@gmail.com",
+     "name": "Masnun",
+     "id": 1,
+     "price": 12.99
+     }
 ]
 
 subscriber_request_parser = RequestParser(bundle_errors=True)
 subscriber_request_parser.add_argument("name", type=str, required=True, help="Name has to be valid string")
 subscriber_request_parser.add_argument("email", required=True)
 subscriber_request_parser.add_argument("id", type=int, required=True, help="Please enter valid integer as ID")
-
+subscriber_request_parser.add_argument("price", type=float, required=True, help="Please enter valid price")
 
 class SubscriberCollection(Resource):
     def get(self):
@@ -23,6 +27,8 @@ class SubscriberCollection(Resource):
 
     def post(self):
         args = subscriber_request_parser.parse_args()
+        #print(args.get("price"))
+        print(args["price"])
         users.append(args)
         return {"msg": "Subscriber added", "subscriber_data": args}
 
